@@ -1,0 +1,582 @@
+﻿@model Amms.Models.Admin
+@{
+    ViewBag.Title = "AddItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #confirm {
+        display: none;
+        background-color: #514E61;
+        color: #FFFFFF;
+        border: 1px solid #aaa;
+        position: fixed;
+        width: 250px;
+        left: 50%;
+        margin-left: -100px;
+        padding: 6px 8px 8px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+        #confirm button {
+            background-color: #48E5DA;
+            display: inline-block;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            padding: 5px;
+            text-align: center;
+            width: 80px;
+            cursor: pointer;
+        }
+
+        #confirm .message {
+            text-align: left;
+        }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+
+
+<body>
+
+    @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+    {
+        if (ViewBag.Message != null)
+        {
+            if (ViewBag.Type == true)
+            {
+                <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+					
+				};
+                </script>
+            }
+
+            else
+            {
+                <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+				
+				 };
+                </script>
+            }
+        }
+
+    }
+
+    @using (Html.BeginForm("AddItem", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+       
+<section>
+	<div class="col-xs-12 col-sm-12 col-md-2 sidebar">
+	<div class="widget widget-categories">
+		<div class="widget-content">
+			<ul class="list-unstyled">
+				<li>
+					<a href="@Url.Action("GetAllReservations", "Admin")"><i class="fa fa-angle-double-right"></i>Reservation</a>
+				</li>
+				<li>
+					<a href="@Url.Action("Index", "Invoice")"><i class="fa fa-angle-double-right"></i>Invoice</a>
+				</li>
+				<li>
+					<a href="@Url.Action("AddItem", "Admin")"><i class="fa fa-angle-double-right"></i>Item</a>
+				</li>
+				<li>
+					<a href="@Url.Action("AddUser", "Admin")"><i class="fa fa-angle-double-right"></i>Customer</a>
+				</li>
+				<li>
+					<a href="@Url.Action("AddService", "Admin")"><i class="fa fa-angle-double-right"></i>Service</a>
+				</li>
+				<li>
+					<a href="@Url.Action("AddUnit", "Admin")"><i class="fa fa-angle-double-right"></i>Unit</a>
+				</li>
+				<li>
+					<a href="@Url.Action("AddCategory", "Admin")"><i class="fa fa-angle-double-right"></i>Category</a>
+				</li>
+				<li>
+					<a href="@Url.Action("Index", "Report")"><i class="fa fa-angle-double-right"></i>Report Generation</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-10 shop-content">
+		<h4>Item Management</h4>
+		<div id="adminContainer">
+			<div class="clearfix mb-150">
+				<div class="container">
+					<div class="form-group">
+						<form class="mb-0">
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							<div hidden="hidden">
+								@Html.EditorFor(model => model.Myitem.ItemID, new { htmlAttributes = new { @class = "form-control" } })
+							</div>
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myitem.ItemName, new { @class = "control-label col-md-2" })
+								<div class="col-md-8">
+									@*@if (ViewBag.Button == "add")
+		{
+			@Html.EditorFor(model => model.Myitem.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.Myitem.ItemName, "", new { @class = "text-danger" })
+		}
+		else
+		{
+			@Html.HiddenFor(model => model.Myitem.ItemName);
+			@Html.EditorFor(model => model.Myitem.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.Myitem.ItemName, "", new { @class = "text-danger" })
+		}*@
+									@Html.EditorFor(model => model.Myitem.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myitem.ItemName, "", new { @class = "text-danger" })
+								
+								</div>
+							</div>
+							<br /><br />
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myitem.ItemDescription, new { @class = "control-label col-md-2" })
+								<div class="col-md-8">
+									@Html.EditorFor(model => model.Myitem.ItemDescription, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myitem.ItemDescription, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<br />
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myitem.ItemPrice, new { @class = "control-label col-md-2" })
+								<div class="col-md-8">
+									@Html.EditorFor(model => model.Myitem.ItemPrice, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myitem.ItemPrice, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<br />
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myitem.UnitID, new { @class = "control-label col-md-2" })
+								<div>
+									@Html.DropDownListFor(model => model.Myitem.UnitID, new SelectList(Model.UnitDropList, "Key", "Value"), "Select Unit")
+									@Html.ValidationMessageFor(model => model.Myunit.UnitID, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myitem.CategoryID, new { @class = "control-label col-md-2" })
+								<div>
+									@Html.DropDownListFor(model => model.Myitem.CategoryID, new SelectList(Model.CategoryDropList, "Key", "Value"), "Select Category")
+									@Html.ValidationMessageFor(model => model.Mycategory.CategoryID, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="form-group">
+								@Html.Label("Item Image", htmlAttributes: new { @class = "control-label col-md-2" })
+								<div>
+									@Html.HiddenFor(model => model.Myitem.ItemImage)
+									@Html.EditorFor(model => model.file, new { htmlAttributes = new { @type = "file" } })
+
+									@Html.ValidationMessageFor(model => model.Myitem.ItemImage, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							@if (ViewBag.Button == "add")
+							{
+								<button type="submit" class="btn btn-primary text-center mt-30">Add Item</button>
+								<button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Update Item</button>
+							}
+							else
+							{
+								<div class="form-group">
+									@Html.Label(" ", htmlAttributes: new { @class = "control-label col-md-2" })
+									<div>
+										<img src="~/Content/images/shop/grid/@Model.Myitem.ItemImage" alt="" width="150" height="150" />
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Add Item</button>							
+								<button type="submit" class="btn btn-primary text-center mt-30" formaction=@Url.Action("UpdateItem", "Admin", new { enctype = "multipart/form-data" }) frommethod="post">Update Item</button>
+							}
+
+						</form>
+					</div>
+					<section id="shopcart" class="shop shop-cart">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12  col-sm-12  col-md-10">
+									<div class="cart-table table-responsive">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Item Image</th>
+													<th>Item Name</th>
+													<th>Item Description</th>
+													<th>Item Price</th>
+													<th>Unit</th>
+													<th>Category</th>
+													<th></th>
+													<th></th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach (var i in Model.ItemList)
+												{
+													<tr>
+														<td class="cart-product-item"><img src="~/Content/images/shop/grid/@i.ItemImage" alt=" image" width="50" height=" 50" /></td>
+														<td class="cart-product-item">@i.ItemName</td>
+														<td class="cart-product-item">@i.ItemDescription</td>
+														<td class="cart-product-item">@i.ItemPrice</td>
+
+														@foreach (var k in Model.UnitList)
+														{
+															if (k.UnitID == i.UnitID)
+															{
+																<td class="cart-product-item">@k.UnitName</td>
+															}
+
+														}
+														@foreach (var j in Model.CategoryList)
+														{
+															if (j.CategoryID == i.CategoryID)
+															{
+																<td class="cart-product-item">@j.CategoryName</td>
+															}
+
+														}
+														<td><a href="@Url.Action("UpdateItem", "Admin", new { id = i.ItemID }, null)"><img src="~/Content/images/icons/edit.png" width="30" height="30" data-toggle="tooltip" data-placement="bottom" title="edit"  /></a></td>
+														<td><a href="@Url.Action("DeleteItem", "Admin", new { id = i.ItemID }, null)"><img src="~/Content/images/icons/delete.png" width="30" height="30" data-toggle="tooltip" data-placement="bottom" title="delete" /></a></td>
+														<td class="cart-product-item"><a class="btn btn-secondary" href="@Url.Action("Stock", "Admin")">Stock</a></td>
+													</tr>
+												}
+											</tbody>
+										</table>
+									</div>
+									<!-- .cart-table end -->
+								</div>
+							</div>
+							<!-- .row end -->
+						</div>
+						<!-- .container end -->
+					</section>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</section>
+    }
+
+
+    @*<h2>Admin Panel</h2>*@
+    @*<section>
+        <div class="col-xs-12 col-sm-12 col-md-2 sidebar">
+            <div class="widget widget-categories">
+                <div class="widget-content">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="@Url.Action("AddUser", "Admin")"><i class="fa fa-angle-double-right"></i>CUSTOMER</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AddService", "Admin")"><i class="fa fa-angle-double-right"></i>SERVICES</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AddItem", "Admin")"><i class="fa fa-angle-double-right"></i>ITEM</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AddCategory", "Admin")"><i class="fa fa-angle-double-right"></i>CATEGORY</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AddUnit", "Admin")"><i class="fa fa-angle-double-right"></i>UNIT</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Report")"><i class="fa fa-angle-double-right"></i>REPORT GENERATION</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        @if (ViewBag.Button == "add")
+        {
+            using (Html.BeginForm("AddItem", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="col-xs-12 col-sm-12 col-md-10 shop-content">
+                    <h4>Item Management</h4>
+
+                    <div id="adminContainer">
+                        <div class="clearfix mb-150">
+                            <div class="container">
+                                <div class="form-group">
+                                    <form class="mb-0">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div hidden="hidden">
+                                            @Html.EditorFor(model => model.Myitem.ItemID, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Item Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Myitem.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Myitem.ItemName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Item Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Myitem.ItemDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Myitem.ItemDescription, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Item Price(Rs)", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Myitem.ItemPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Myitem.ItemPrice, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.Label("Unit", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div>
+                                                @Html.DropDownListFor(model => model.Myitem.UnitID, new SelectList(Model.UnitDropList, "Key", "Value"), "Select Unit")
+                                                @Html.ValidationMessageFor(model => model.Myunit.UnitID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div>
+                                                @Html.DropDownListFor(model => model.Myitem.CategoryID, new SelectList(Model.CategoryDropList, "Key", "Value"), "Select Category")
+                                                @Html.ValidationMessageFor(model => model.Mycategory.CategoryID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Item Image", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div>
+                                                @Html.EditorFor(model => model.file, new { htmlAttributes = new { @type = "file" } })
+                                                @Html.ValidationMessageFor(model => model.Myitem.ItemImage, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary text-center mt-30">Add Item</button>
+                                        <button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Update Item</button>
+
+                                </div>
+
+                                <section id="shopcart" class="shop shop-cart">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-xs-12  col-sm-12  col-md-10">
+                                                <div class="cart-table table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 10%;">Item Image</th>
+                                                                <th style="width: 10%;">Item Name</th>
+                                                                <th style="width: 30%;">Item Description</th>
+                                                                <th style="width: 10%;">Item Price</th>
+                                                                <th style="width: 10%;">Unit</th>
+                                                                <th style="width: 10%;">Category</th>
+                                                                <th style="width: 10%;"></th>
+                                                                <th style="width: 10%;"></th>
+                                                                <th style="width: 10%;"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var i in Model.ItemList)
+                                                            {
+                                                                <tr>
+                                                                    <td class="cart-product-item"><img src="~/Content/images/shop/grid/@i.ItemImage" alt=" image" width="50" height=" 50" /></td>
+                                                                    <td class="cart-product-item">@i.ItemName</td>
+                                                                    <td class="cart-product-item">@i.ItemDescription</td>
+                                                                    <td class="cart-product-item">@i.ItemPrice</td>
+
+                                                                    @foreach (var k in Model.UnitList)
+                                                                    {
+                                                                        if (k.UnitID == i.UnitID)
+                                                                        {
+                                                                            <td class="cart-product-item">@k.UnitName</td>
+                                                                        }
+
+                                                                    }
+                                                                    @foreach (var j in Model.CategoryList)
+                                                                    {
+                                                                        if (j.CategoryID == i.CategoryID)
+                                                                        {
+                                                                            <td class="cart-product-item">@j.CategoryName</td>
+                                                                        }
+
+                                                                    }
+                                                                    <td><a href="@Url.Action("UpdateItem", "Admin", new { id = i.ItemID }, null)"><img src="~/Content/images/icons/edit.jpg" width="30" height="30" /></a></td>
+                                                                    <td><a href="@Url.Action("DeleteItem", "Admin", new { id = i.ItemID }, null)"><img src="~/Content/images/icons/delete.png" width="30" height="30" /></a></td>
+                                                                    <td class="cart-product-item"><a class="btn btn-secondary" href="@Url.Action("Stock", "Admin")">Stock</a></td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- .cart-table end -->
+                                            </div>
+                                        </div>
+                                        <!-- .row end -->
+                                    </div>
+                                    <!-- .container end -->
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+
+        @if (ViewBag.Button == "update")
+        {
+            using (Html.BeginForm("UpdateItem", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-xs-12 col-sm-12 col-md-10 shop-content">
+                    <h4>Item Management</h4>
+
+                    <div id="adminContainer">
+                        <div class="clearfix mb-150">
+                            <div class="container">
+                                <div class="form-group">
+                                    <form class="mb-0">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div hidden="hidden">
+                                            @Html.EditorFor(model => model.Myitem.ItemID, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Item Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Myitem.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Myitem.ItemName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Item Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Myitem.ItemDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Myitem.ItemDescription, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Item Price(Rs)", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Myitem.ItemPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Myitem.ItemPrice, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.Label("Unit", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div>
+                                                @Html.DropDownListFor(model => model.Myitem.UnitID, new SelectList(Model.UnitDropList, "Key", "Value"), "Select Unit")
+                                                @Html.ValidationMessageFor(model => model.Myunit.UnitID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div>
+                                                @Html.DropDownListFor(model => model.Myitem.CategoryID, new SelectList(Model.CategoryDropList, "Key", "Value"), "Select Category")
+                                                @Html.ValidationMessageFor(model => model.Mycategory.CategoryID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        @if (ViewBag.Image == "load")
+                                        {
+                                            <div class="form-group">
+                                            @Html.Label(" ", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                @Html.Label("Item Image", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                                <div>
+                                                    @Html.EditorFor(model => model.file, new { htmlAttributes = new { @type = "file" } })
+                                                    <img src="~/Content/images/shop/grid/@Model.Myitem.ItemImage" alt="" width="150" height="150" />
+                                                </div>
+                                                </div>
+                                                }
+                                                @if (ViewBag.Image == "save")
+                                                {
+                                                    <div class="form-group">
+                                                        @Html.Label("Item Image", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                        <div>
+                                                            @Html.EditorFor(model => model.file, new { htmlAttributes = new { @type = "file" } })
+                                                            @Html.ValidationMessageFor(model => model.Myitem.ItemImage, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                }
+                                                <button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Add Item</button>
+                                                <button type="submit" class="btn btn-primary text-center mt-30">Update Item</button>
+
+
+                                                </form>
+                                                </div>
+
+                                                <section id="shopcart" class="shop shop-cart">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-xs-12  col-sm-12  col-md-10">
+                                                                <div class="cart-table table-responsive">
+                                                                    <table class="table table-bordered">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="width: 10%;">Item Image</th>
+                                                                                <th style="width: 10%;">Item Name</th>
+                                                                                <th style="width: 30%;">Item Description</th>
+                                                                                <th style="width: 10%;">Item Price</th>
+                                                                                <th style="width: 10%;">Unit</th>
+                                                                                <th style="width: 10%;">Category</th>
+                                                                                <th style="width: 10%;"></th>
+                                                                                <th style="width: 10%;"></th>
+                                                                                <th style="width: 10%;"></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach (var i in Model.ItemList)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td class="cart-product-item"><img src="~/Content/images/shop/grid/@i.ItemImage" alt=" image" width="50" height=" 50" /></td>
+                                                                                    <td class="cart-product-item">@i.ItemName</td>
+                                                                                    <td class="cart-product-item">@i.ItemDescription</td>
+                                                                                    <td class="cart-product-item">@i.ItemPrice</td>
+
+                                                                                    @foreach (var k in Model.UnitList)
+                                                                                    {
+                                                                                        if (k.UnitID == i.UnitID)
+                                                                                        {
+                                                                                            <td class="cart-product-item">@k.UnitName</td>
+                                                                                        }
+
+                                                                                    }
+                                                                                    @foreach (var j in Model.CategoryList)
+                                                                                    {
+                                                                                        if (j.CategoryID == i.CategoryID)
+                                                                                        {
+                                                                                            <td class="cart-product-item">@j.CategoryName</td>
+                                                                                        }
+
+                                                                                    }
+                                                                                    <td><a href="@Url.Action("UpdateItem", "Admin", new { id = i.ItemID }, null)"><img src="~/Content/images/icons/edit.jpg" width="30" height="30" /></a></td>
+                                                                                    <td><a href="@Url.Action("DeleteItem", "Admin", new { id = i.ItemID }, null)"><img src="~/Content/images/icons/delete.png" width="30" height="30" /></a></td>
+                                                                                    <td class="cart-product-item"><a class="btn btn-secondary" href="@Url.Action("Stock", "Admin")">Stock</a></td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <!-- .cart-table end -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- .row end -->
+                                                    </div>
+                                                    <!-- .container end -->
+                                                </section>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                }
+                                                }
+
+
+                                                </section>*@
+
+</body>

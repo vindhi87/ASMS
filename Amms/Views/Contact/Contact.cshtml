@@ -1,0 +1,105 @@
+﻿@model Amms.Models.Contact
+@{
+	ViewBag.Title = "Contact";
+}
+
+@*<h2>@ViewBag.Title.</h2>*@
+@*<h3>@ViewBag.Message</h3>*@
+
+<!-- Contact #1
+============================================= -->
+<section class="contact">
+	<h2>Contact Us</h2>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-8 widget-contact pl-0 pr-0 p-none-xs p-none-sm">
+				@*@using (Html.BeginForm("SendMail", "Email", FormMethod.Post))*@
+				@using (Html.BeginForm())
+				{
+
+					@Html.AntiForgeryToken()
+
+
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					<div class="form-group">
+						<div class="col-md-6">
+							@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "Name", @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-6">
+							@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email", @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+							@Html.EditorFor(model => model.Message, new { htmlAttributes = new { @placeholder = "Message", @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+
+						</div>
+					</div>
+					<div class="col-md-12">
+						<button type="submit" id="submit-message" class="btn btn-primary text-center">Send Message</button>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 mt-xs">
+						<!--Alert Message-->
+						<div id="contact-result">
+						</div>
+					</div>
+				}
+			</div>
+					@*</form>*@
+					
+				
+				<!-- .col-md-8 end -->
+				<div class="col-xs-12 col-sm-12 col-md-4">
+					<div class="contct-widget-content">
+						<p class="mb-0">We are here to answer any questions you may have about our services. Reach out to us and we will respond to you as soon as we can.</p>
+						<div class="widget-contact-info mt-md">
+							<div class="col-xs-12 col-sm-12 col-md-6 pl-0 mb-30-xs mb-30-sm">
+								<h6>Phone :</h6>
+								<p><i class="fa fa-phone"></i>(+94) 777714714</p>
+								<p class="mb-0"><i class="fa fa-fax"></i>(+94) 112774899 </p>
+							</div>
+							<!-- .col-md-6 end -->
+							<div class="col-xs-12 col-sm-12 col-md-6">
+								<h6>Email :</h6>
+								<p class="mb-0"><i class="fa fa-envelope"></i>aaaaa@gmail.com</p>
+							</div>
+							<!-- .col-md-6 end -->
+							<div class="col-xs-12 col-sm-12 col-md-12 pl-0 mt-30 mb-30-xs mb-30-sm">
+								<h6>Address :</h6>
+								<p class="mb-0"><i class="fa fa-map-marker"></i>No.1116 - Pannipitiya Rd, Battaramulla .</p>
+							</div>
+							<!-- .col-md-12 end -->
+						</div>
+					</div>
+				</div>
+				<!-- .col-md-4 end -->
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+</section>

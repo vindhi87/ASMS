@@ -1,0 +1,92 @@
+﻿@model Amms.Models.InvDetail
+@{
+	ViewBag.Title = "InvoiceDeatil";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+	<section>
+		<h4>Services for Invoice</h4>
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+
+			<div class="clearfix mb-150">
+				<div class="container">
+					<div class="form-group">
+						<form class="mb-0">
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							<div hidden="hidden">
+								@Html.EditorFor(model => model.Myservice.ServiceID, new { htmlAttributes = new { @class = "form-control" } })
+							</div>
+							@*@<div class="form-group">
+									@Html.Label("Service", htmlAttributes: new { @class = "control-label col-md-2" })
+									<div>
+										@Html.DropDownListFor(m => m.Myservice.ServiceID, new SelectList(Model.ServiceDropList, "Key", "Value"), "Select Service")
+										@Html.ValidationMessageFor(model => model.Myservice.ServiceID, "", new { @class = "text-danger" })
+									</div>
+								</div>*@
+							<div class="form-group">
+								@Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" })
+								<div>
+									@Html.DropDownListFor(model => model.Myservice.ServiceName, new SelectList (Model.ServiceDropList, "Key","Value"), "Select Service")
+									@Html.ValidationMessageFor(model => model.Myservice.ServiceName, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Myservice.ServiceDescription, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myservice.ServiceDescription, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="form-group">
+								@Html.Label("Price", htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Myservice.ServicePrice, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myservice.ServicePrice, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="form-group">
+								@Html.Label("Time", htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Myservice.ServiceTime, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myservice.ServiceTime, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<button type="submit" class="btn btn-primary text-center mt-30">Add</button>
+
+						</form>
+					</div>
+				</div>
+
+
+			</div>
+		}
+
+	</section>
+</body>
+@*@section scripts{
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('MyApp', [])
+		app.controller('Invoice', function ($scope, $http, $window) {
+			$scope.SetTextBox = function () {
+				var name = $('#Myservice.ServiceName').find('option:selected').val();
+				var data = { "ServiceName": name };
+				var config = {
+					params: data,
+					headers: { 'Accept': 'application/json' }
+				};
+				$http.get("~/Invoice/GetCustomerDetails", config).then(function (response) {
+					$scope.ServiceName = response.data.ServiceName;
+					$scope.ServiceDescription = response.data.ServiceDescription;
+				}, function (response) {
+					alert(response.responseText);
+				});
+			}
+		});
+	</script>}*@

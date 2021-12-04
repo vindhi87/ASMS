@@ -1,0 +1,182 @@
+﻿@model Amms.Models.Reservation
+@using DayPilot.Web.Mvc.Events.Calendar;
+@using DayPilot.Web.Mvc.Enums.Calendar;
+
+@{
+	ViewBag.Title = "Reservation";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Calendar/lib/dayPilot/daypilot-all.min.js")" type="text/javascript"></script>
+
+<head>
+	<style>
+		lable {
+			color: #a6a6a6;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 13px;
+		}
+	</style>
+</head>
+
+<body>
+	@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+	{
+		if (ViewBag.Message != null)
+		{
+			if (ViewBag.Type == true)
+			{
+				<script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+
+				};
+				</script>
+			}
+
+			else
+			{
+				<script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+
+				 };
+				</script>
+			}
+		}
+
+	}
+
+
+	@using (Html.BeginForm("GetReservation", "Resevation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+	{
+		@Html.AntiForgeryToken()
+
+		<!-- #page-title end -->
+		<section>
+			<h2>Reservations</h2>
+			<div class="clearfix mb-150">
+				<div class="container">
+					<form class="mb-12">
+						<div class="row">
+							<div class="col-sm-3">
+
+
+								<div class="form-group">
+									@*@Html.EditorFor(model => model.FirstName, new { @class = "control-label col-md-2" })*@
+									<label type="text" class="form-control" id="firstname" style="height: 35px">First Name: @Model.FirstName</label>
+								</div>
+								<div class="form-group">
+									@*@Html.EditorFor(model => model.LastName, new { @class = "control-label col-md-2" })*@
+									<label type="text" class="form-control" id="lastname" style="height: 35px">Last Name: @Model.LastName</label>
+								</div>
+								<div class="form-group">
+									@*@Html.EditorFor(model => model.Mobile, new { @class = "control-label col-md-2" })*@
+									<label type="text" class="form-control" id="mobile" style="height: 35px">Mobile: @Model.Mobile</label>
+								</div>
+								<div class="form-group">
+									@*@Html.EditorFor(model => model.EmailID, new { @class = "control-label col-md-2" })*@
+									<label type="text" class="form-control" id="email" style="height: 35px">Email: @Model.EmailID</label>
+								</div>
+
+								<div class="form-group">
+									<label type="text" class="form-control" id="vehicle" style="height: 35px"> Select Your Vehicle</label>
+									<div class="col-md-10">
+										@Html.DropDownListFor(model => model.Myvehicle.VehicleID, new SelectList(Model.VehicleDropList, "Key", "Value"), "Select Vehicle")
+										@Html.ValidationMessageFor(model => model.Myvehicle.VehicleID, "", new { @class = "text-danger" })
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label> </label>
+								</div>
+
+
+
+								<div class="form-group">
+									<label for="text" id="AppointmentD">Appointment Date: </label><input type="date" id="AppDate" name="appdate">
+
+								</div>
+								<div class="form-group">
+									<label type="text" id="AppointmentT">Appointment Time: </label> <input type="time" id="AppTime" name="apptime">
+
+								</div>
+								<div class="form-group ">
+									<label type="text" class="form-control" id="Service" style="height: 35px">Select your Services</label>
+									@for (int u = 0; u < Model.ServList.Count; u++)
+									{
+										@Html.HiddenFor(model => model.ServList[u].ServiceName);
+										@Html.HiddenFor(model => model.ServList[u].ServiceID);
+										@Html.HiddenFor(model => model.ServList[u].ServiceDescription);
+										@Html.HiddenFor(model => model.ServList[u].ServicePrice);
+										@Html.HiddenFor(model => model.ServList[u].ServiceTime);
+										@Html.HiddenFor(model => model.ServList[u].ServiceImage);
+										@Html.CheckBoxFor(model => model.ServList[u].IsActive, new { @class = "form-check-input" }) <span>- @Model.ServList[u].ServiceName</span><br>;
+
+										if(ViewBag.Status==true)
+										{
+											Model.ServList[u].IsActive = false;
+										}
+
+									}
+								</div>
+							</div>
+							<div class="col-sm-9">
+								@* calendar *@
+								<div class="about-accordion">
+									<div class="panel-group accordion" id="accordion02" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-default">
+											<div class="panel-heading" role="tab" id="headingTwo">
+												<h4>
+													<label type="text" class="form-control" id="time" style="height: 35px" >Allocated Time Slots</label>
+													<a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion02" href="#collapse02-2" aria-expanded="false" aria-controls="collapse02-2"> </a>
+												</h4>
+											</div>
+											<div id="collapse02-2"  role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
+												<div class="panel-body">
+													<div style="display: flex">
+
+														<div style="margin-right: 10px;">
+
+															@Html.DayPilotNavigator("nav", new DayPilotNavigatorConfig
+													   {
+														   ShowMonths = 3,
+														   SkipMonths = 3
+													   })
+														</div>
+
+														<div style="flex-grow: 1;">
+
+															@Html.DayPilotCalendar("dp_week", new DayPilotCalendarConfig
+													   {
+														   BackendUrl = Url.Content("~/Calendar/Week"),
+														   ViewType = DayPilot.Web.Mvc.Enums.Calendar.ViewType.Week,
+														   TimeRangeSelectedHandling = TimeRangeSelectedHandlingType.JavaScript,
+														   TimeRangeSelectedJavaScript = "create(start, end)"
+
+													   })
+														</div>
+													</div>
+
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+
+
+
+						<button type="submit" class="btn btn-primary text-center mt-30">Reserve</button>
+					</form>
+				</div>
+			</div>
+		</section>
+	}
+</body>

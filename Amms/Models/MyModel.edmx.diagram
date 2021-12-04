@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d4a00b95464949a691eea11c763e35a5" Name="Diagram1">
+        <EntityTypeShape EntityType="MyDatabaseModel.Appointment" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.AppointmentService" Width="1.5" PointX="12.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Category" Width="1.5" PointX="11.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Employee" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Inquiry" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Invoice" Width="1.5" PointX="10.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.InvoiceDetail" Width="1.5" PointX="15.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Item" Width="1.5" PointX="13.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Service" Width="1.5" PointX="10.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Stock" Width="1.5" PointX="15.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Unit" Width="1.5" PointX="11.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.User" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.Vehicle" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDatabaseModel.invoice_details" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Appointme__Appoi__47FBA9D6" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Appointme__UserI__451F3D2B" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Appointme__Vehic__442B18F2" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Appointme__Servi__49E3F248" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Appointme__UserI__4AD81681" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Appointme__Vehic__48EFCE0F" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Item__CategoryID__34E8D562" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Users__EmployeeI__269AB60B" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Invoice__UserID__3AA1AEB8" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Invoice__Vehicle__3B95D2F1" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__InvoiceDe__Invoi__3E723F9C" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__InvoiceDe__ItemI__5DEAEAF5" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__InvoiceDe__Servi__5EDF0F2E" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__InvoiceDe__UnitI__3F6663D5" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Item__UnitID__33F4B129" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Stock__ItemID__37C5420D" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDatabaseModel.FK__Vehicle__UserID__3118447E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

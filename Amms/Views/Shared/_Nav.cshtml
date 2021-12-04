@@ -1,0 +1,89 @@
+﻿<nav id="primary-menu" class="navbar navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo" href="@Url.Action("GetDashboard", "Dashboard")">
+                <img src="~/Content/images/logo/logo.jpeg" alt="Autoshop">
+            </a>
+        </div>
+
+       		<div class="collapse navbar-collapse pull-right" id="header-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-left">
+						<li class="has-dropdown active">
+							<a href="@Url.Action("GetDashboard", "Dashboard")">Home</a>
+						</li>
+
+						<li class="has-dropdown pull-left">
+							<a href="@Url.Action("Service", "Service")">Services</a>
+						</li>
+
+						@if (!string.IsNullOrEmpty(Session["FirstName"] as string))
+						{
+							if (Session["UserGroup"].ToString() == "User")
+							{
+								<li class="has-dropdown ">
+									<a href="@Url.Action("GetReservation", "Resevation")">Reservation</a>
+								</li>
+							}
+
+							if (Session["UserGroup"].ToString() == "Admin" || (Session["UserGroup"].ToString() == "Operator" ) )
+							{
+								<li class="has-dropdown pull-left">
+									<a href="@Url.Action("Admin", "Admin")">Admin</a>
+								</li>
+							}
+						}
+							<li class="has-dropdown">
+								<a href="@Url.Action("ShopProd", "Shop")">Shop</a>								
+							</li>
+
+							<li class="has-dropdown">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle">About Us</a>
+								<ul class="dropdown-menu">
+
+									<li>
+										<a href="@Url.Action("About", "Home")">About Us</a>
+									</li>
+
+									<li>
+										<a href="@Url.Action("Gallery", "Home")">Gallery</a>
+									</li>
+
+									<li class="has-dropdown pull-left">
+										<a href="@Url.Action("Inquiry", "Inquiry")">Contact Us</a>
+									</li>
+								</ul>
+							</li>
+				
+						</ul>
+
+			<!-- .module-cart -->
+			<div class="module module-cart pull-left">
+				@if (@Session["count"] !=null)
+				{
+				<div class="cart-icon">
+					<a href="@Url.Action("LoadCart", "Shop")"><i class="fa fa-shopping-cart"></i></a>
+					<a href="@Url.Action("LoadCart", "Shop")" class="btn btn-dark btn-sm"><span class="badge">@Session["count"]</span></a>
+				</div>
+				}
+			</div>
+			<div class="cart-box">
+				<div class="cart-overview">
+			
+				</div>
+			
+			</div>
+		</div>
+            <!-- .module-cart end -->
+
+        </div>
+        <!-- /.navbar-collapse -->
+    
+    <!-- /.container-fluid -->
+</nav>

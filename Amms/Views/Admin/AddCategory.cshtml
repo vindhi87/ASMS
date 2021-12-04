@@ -1,0 +1,162 @@
+﻿@model Amms.Models.Admin
+@{
+	ViewBag.Title = "AddCategory";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body>
+
+	@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+	{
+		if (ViewBag.Message != null)
+		{
+			if (ViewBag.Type == true)
+			{
+				<script type="text/javascript">
+					 window.onload = function () {
+                alert("@ViewBag.Message");
+				};
+				</script>
+
+			}
+			else
+			{
+				<script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+				</script>
+				
+			}
+
+		}
+	}
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+<section>
+
+	<div class="col-xs-12 col-sm-12 col-md-2 sidebar">
+		<div class="widget widget-categories">
+			<div class="widget-content">
+				<ul class="list-unstyled">
+					<li>
+						<a href="@Url.Action("GetAllReservations", "Admin")"><i class="fa fa-angle-double-right"></i>Reservation</a>
+					</li>
+					<li>
+						<a href="@Url.Action("Index", "Invoice")"><i class="fa fa-angle-double-right"></i>Invoice</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddItem", "Admin")"><i class="fa fa-angle-double-right"></i>Item</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddUser", "Admin")"><i class="fa fa-angle-double-right"></i>Customer</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddService", "Admin")"><i class="fa fa-angle-double-right"></i>Service</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddUnit", "Admin")"><i class="fa fa-angle-double-right"></i>Unit</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddCategory", "Admin")"><i class="fa fa-angle-double-right"></i>Category</a>
+					</li>
+					<li>
+						<a href="@Url.Action("Index", "Report")"><i class="fa fa-angle-double-right"></i>Report Generation</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-10 shop-content">
+			<h4>Category Management	</h4>
+			<br />
+			<div class="form-group">
+				<form class="mb-0">
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					<div hidden="hidden">
+						@Html.EditorFor(model => model.Mycategory.CategoryID, new { htmlAttributes = new { @class = "form-control" } })
+					</div>
+					<div class="form-group">
+						@Html.LabelFor(model => model.Mycategory.CategoryName, new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Mycategory.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Mycategory.CategoryName, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<br /><br /><br />
+					<div class="form-group">
+						@Html.LabelFor(model => model.Mycategory.CategoryDescription, new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Mycategory.CategoryDescription, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Mycategory.CategoryDescription, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					@if (ViewBag.Button == "add")
+					{
+						<button type="submit" class="btn btn-primary text-center mt-30">Add Category</button>
+						<button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Update Category</button>
+					}
+					else
+					{
+						<button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Add Category</button>
+						<button type="submit" class="btn btn-primary text-center mt-30">Update Category</button>
+					}
+
+				</form>
+			</div>
+
+			<section id="shopcart" class="shop shop-cart">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12  col-sm-12  col-md-10">
+							<div class="cart-table table-responsive">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Category Name</th>
+											<th>Category Description</th>
+											<th>Edit</th>
+											<th>Delete</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var i in Model.CategoryList)
+										{
+											<tr>
+												<td class="cart-product-item">@i.CategoryName</td>
+												<td class="cart-product-item">@i.CategoryDescription</td>
+												<td align="center"><a href="@Url.Action("UpdateCategory", "Admin", new { id = i.CategoryID }, null)"><img src="~/Content/images/icons/edit.png" width="30" height="30" data-toggle="tooltip" data-placement="bottom" title="edit" /></a></td>
+												<td align="center"><a href="@Url.Action("DeleteCategory", "Admin", new { id = i.CategoryID }, null)"><img src="~/Content/images/icons/delete.png" width="30" height="30" data-toggle="tooltip" data-placement="bottom" title="delete" /></a></td>
+
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+							<!-- .cart-table end -->
+						</div>
+					</div>
+					<!-- .row end -->
+				</div>
+				<!-- .container end -->
+			</section>
+		</div>
+
+
+	</div>
+</section>
+	}
+
+</body>
+
+
+
+@section Scripts{
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

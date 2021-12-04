@@ -1,0 +1,143 @@
+﻿@model Amms.Models.User
+@{
+    ViewBag.Title = "Registration";
+}
+
+<body>
+	<section>
+
+		@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+		{
+			if (ViewBag.Message != null)
+			{
+				if (ViewBag.Type == true)
+				{
+					<script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+					
+				};
+					</script>
+				}
+
+				else
+				{
+					<script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+				
+				 };
+					</script>
+				}
+			}
+
+		}
+
+		<div class="col-md-1">
+		</div>
+
+		<div class="col-md-10">
+
+			<h2>Registration</h2>
+
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken()
+
+				<div class="form-horizontal">
+					<hr />
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					<div class="form-group">
+						@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						@Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						@Html.LabelFor(model => model.EmailID, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+							@Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						@Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+					<br />
+					<div class="checkbox">
+						<label>
+							<input type="checkbox">
+							I agree to <a href="#">the Terms and Conditions</a>
+						</label>
+						<p> By clicking Sign up, you agree to our terms and conditions and confirm that you have read our plociies.</p>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-10">
+							<button type="submit" class="btn btn-primary text-center mt-30"> Sign Up </button>
+
+						</div>
+					</div>
+				</div>
+
+				@*if (ViewBag.Message != null)
+				{
+					<div class="alert alert-danger">
+						<strong>Error!</strong>@ViewBag.Message
+					</div>
+				}*@
+			}
+		</div>
+
+		<div class="col-md-1">
+
+		</div>
+
+			
+	</section>
+
+</body>
+@section Scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+

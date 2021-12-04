@@ -1,0 +1,436 @@
+CREATE TABLE [dbo].[Appointment] (
+    [AppointmentID]          INT          IDENTITY (1, 1) NOT NULL,
+    [AppointmentDate]        DATETIME     NOT NULL,
+    [AppointmentStartTime]   VARCHAR (50) NOT NULL,
+    [AppointmentEndTime]     VARCHAR (50) NOT NULL,  
+    [AppointmentStatus]      VARCHAR (10) NOT NULL,
+    [UserID]                 INT          NOT NULL,
+    [VehicleID]              INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([AppointmentID] ASC),
+    FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]),
+    FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+-----------------------------------------------------------------------------------
+
+CREATE TABLE [dbo].[AppointmentService] (
+    [AppointmentServID] INT IDENTITY (1, 1) NOT NULL,
+    [AppointmentID]     INT NOT NULL,
+    [UserID]            INT NOT NULL,
+    [VehicleID]         INT NOT NULL,
+    [ServiceID]         INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([AppointmentServID] ASC),
+    FOREIGN KEY ([AppointmentID]) REFERENCES [dbo].[Appointment] ([AppointmentID]) ON DELETE CASCADE,
+    FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]),
+    FOREIGN KEY ([ServiceID]) REFERENCES [dbo].[Service] ([ServiceID]),
+    FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+-------------------------------------------------------------------------------------
+
+CREATE TABLE [dbo].[Category] (
+    [CategoryID]          INT          IDENTITY (1, 1) NOT NULL,
+    [CategoryName]        VARCHAR (50) NOT NULL,
+    [CategoryDescription] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([CategoryID] ASC)
+);
+
+------------------------------------------------------------------------
+
+CREATE TABLE [dbo].[Employee] (
+    [EmployeeID]  INT           IDENTITY (1, 1) NOT NULL,
+    [FirstName]   VARCHAR (50)  NULL,
+    [LastName]    VARCHAR (50)  NULL,
+    [Address]     VARCHAR (150) NULL,
+    [MOb]         INT           NULL,
+    [Designation] VARCHAR (50)  NULL,
+    PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
+);
+
+-------------------------------------------------------------------------
+
+CREATE TABLE [dbo].[Inquiry] (
+    [Id]      INT           IDENTITY (1, 1) NOT NULL,
+    [Name]    VARCHAR (100) NULL,
+    [Email]   VARCHAR (50)  NOT NULL,
+    [Message] VARCHAR (500) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+-------------------------------------------------------------------------
+CREATE TABLE [dbo].[Invoice] (
+    [InvoiceID] INT            IDENTITY (1, 1) NOT NULL,
+    [Total]     DECIMAL (8, 2) NOT NULL,
+    [InvDate]   DATETIME       NOT NULL,
+    [InvTime]   VARCHAR (10)   NULL,
+    [PayType]   VARCHAR (10)   NOT NULL,
+    [UserID]    INT            NOT NULL,
+    [VehicleID] INT            NOT NULL,
+    [Remarks]   VARCHAR (50)   NULL,
+    [Status]     VARCHAR (50)   NULL,
+    PRIMARY KEY CLUSTERED ([InvoiceID] ASC),
+    FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID]),
+    FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID])
+);
+
+
+--------------------------------------------------------------------------
+
+CREATE TABLE [dbo].[InvoiceDetails] (
+    [DetailID]        INT            IDENTITY (1, 1) NOT NULL,
+    [ItemServiceName] VARCHAR (100)  NOT NULL,
+    [Price]           DECIMAL (8, 2) NOT NULL,
+    [InvoiceID]       INT            NOT NULL,
+    [ServiceID]       INT            NOT NULL,
+    [ItemID]          INT            NOT NULL,
+    [Qty]             INT            NOT NULL,
+    [Total]           DECIMAL (8, 2) NOT NULL,
+    [UnitID]          INT            NOT NULL,
+    [Remarks]         CHAR (10)      NULL,
+    PRIMARY KEY CLUSTERED ([DetailID] ASC),
+    FOREIGN KEY ([InvoiceID]) REFERENCES [dbo].[Invoice] ([InvoiceID]),
+    FOREIGN KEY ([UnitID]) REFERENCES [dbo].[Unit] ([UnitID]),
+    FOREIGN KEY ([ItemID]) REFERENCES [dbo].[Item] ([ItemID]),
+    FOREIGN KEY ([ServiceID]) REFERENCES [dbo].[Service] ([ServiceID])
+);
+
+-----------------------------------------------------------------------------------
+CREATE TABLE [dbo].[Item] (
+    [ItemID]          INT            IDENTITY (1, 1) NOT NULL,
+    [ItemName]        VARCHAR (50)   NOT NULL,
+    [ItemDescription] VARCHAR (50)   NULL,
+    [ItemPrice]       DECIMAL (8, 2) NOT NULL,
+    [UnitID]          INT            NOT NULL,
+    [CategoryID]      INT            NOT NULL,
+    [ItemImage]       VARCHAR (500)  NULL,
+    PRIMARY KEY CLUSTERED ([ItemID] ASC),
+    FOREIGN KEY ([UnitID]) REFERENCES [dbo].[Unit] ([UnitID]),
+    FOREIGN KEY ([CategoryID]) REFERENCES [dbo].[Category] ([CategoryID])
+);
+
+-------------------------------------------------------------------
+CREATE TABLE [dbo].[Service] (
+    [ServiceID]          INT            IDENTITY (1, 1) NOT NULL,
+    [ServiceName]        VARCHAR (50)   NOT NULL,
+    [ServiceDescription] VARCHAR (MAX)  NULL,
+    [ServicePrice]       DECIMAL (8, 2) NOT NULL,
+    [ServiceTime]        VARCHAR (10)   NULL,
+    [ServiceImage]       VARCHAR (500)  NULL,
+    PRIMARY KEY CLUSTERED ([ServiceID] ASC)
+);
+
+-------------------------------------------------------------------------
+CREATE TABLE [dbo].[Stock] (
+    [StockID]       INT            IDENTITY (1, 1) NOT NULL,
+    [AvailQty]      INT            NULL,
+    [MinOrderQty]   INT            NULL,
+    [DamageQty]     INT            NULL,
+    [PurchasePrice] DECIMAL (5, 2) NULL,
+    [SellingPrice]  DECIMAL (5, 2) NULL,
+    [ItemID]        INT            NULL,
+    PRIMARY KEY CLUSTERED ([StockID] ASC),
+    FOREIGN KEY ([ItemID]) REFERENCES [dbo].[Item] ([ItemID])
+);
+
+--------------------------------------------------------------------------
+CREATE TABLE [dbo].[Unit] (
+    [UnitID]          INT          IDENTITY (1, 1) NOT NULL,
+    [UnitName]        VARCHAR (50) NOT NULL,
+    [UnitDescription] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([UnitID] ASC)
+);
+
+-----------------------------------------------------------------
+CREATE TABLE [dbo].[Users] (
+    [UserID]          INT              IDENTITY (1, 1) NOT NULL,
+    [UserName]        VARCHAR (50)     NOT NULL,
+    [FirstName]       VARCHAR (50)     NOT NULL,
+    [LastName]        VARCHAR (50)     NOT NULL,
+    [Address]         VARCHAR (MAX)    NULL,
+    [Mobile]          VARCHAR (20)     NOT NULL,
+    [EmailID]         VARCHAR (254)    NOT NULL,    
+    [Password]        NVARCHAR (MAX)   NOT NULL,
+    [IsEmailVerified] BIT              NOT NULL,
+    [ActivationCode]  UNIQUEIDENTIFIER NOT NULL,
+    [UserGroup]       VARCHAR (50)     NULL,
+    [EmployeeID]      INT              NULL,
+    PRIMARY KEY CLUSTERED ([UserID] ASC),
+    FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID])
+);
+
+---------------------------------------------------------------------------
+CREATE TABLE [dbo].[Vehicle] (
+    [VehicleID]     INT          IDENTITY (1, 1) NOT NULL,
+    [VehicleType]   VARCHAR (50) NOT NULL,
+    [VehicleModel]  VARCHAR (50) NOT NULL,
+    [VehicleNumber] VARCHAR (50) NOT NULL,
+    [Year]          INT          NULL,
+    [UserID]        INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([VehicleID] ASC),
+    FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+-----------------------------------------------------------------------------
+
+insert into
+
+
+SET IDENTITY_INSERT [dbo].[Vehicle] ON
+INSERT INTO [dbo].[Vehicle] ([VehicleID], [VehicleType], [VehicleModel], [VehicleNumber], [Year], [UserID]) VALUES (1, N'CAR', N'HONDA', N'CAB-7424', 2000, 1)
+INSERT INTO [dbo].[Vehicle] ([VehicleID], [VehicleType], [VehicleModel], [VehicleNumber], [Year], [UserID]) VALUES (2, N'VAN', N'NISSAN', N'ABB-1234', 2002, 2)
+INSERT INTO [dbo].[Vehicle] ([VehicleID], [VehicleType], [VehicleModel], [VehicleNumber], [Year], [UserID]) VALUES (4, N'JEEP', N'TOYOTA', N'CEB-3343', 2015, 9)
+INSERT INTO [dbo].[Vehicle] ([VehicleID], [VehicleType], [VehicleModel], [VehicleNumber], [Year], [UserID]) VALUES (5, N'CAR', N'SUZUKI', N'CER-2345', 2021, 1)
+INSERT INTO [dbo].[Vehicle] ([VehicleID], [VehicleType], [VehicleModel], [VehicleNumber], [Year], [UserID]) VALUES (42, N'Jeep', N'Toyota', N'CAD-3456', 2013, 1)
+SET IDENTITY_INSERT [dbo].[Vehicle] OFF
+
+---------------------------------------------------------------------------------------
+SET IDENTITY_INSERT [dbo].[Users] ON
+INSERT INTO [dbo].[Users] ([UserID], [UserName], [FirstName], [LastName], [Address], [Mobile], [EmailID], [DateOfBirth], [Password], [IsEmailVerified], [ActivationCode], [UserGroup], [EmployeeID]) VALUES (1, N'vindhiz@gmail.com', N'Vindhi', N'Chandrasiri', N'147/C,Kalalgoda,Pannipitiya', N'0777327474', N'vindhiz@gmail.com', N'2004-06-16 00:00:00', N'jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=', 1, N'1e97c79c-623f-48ae-ada5-49fcac28571f', N'Admin', 1)
+INSERT INTO [dbo].[Users] ([UserID], [UserName], [FirstName], [LastName], [Address], [Mobile], [EmailID], [DateOfBirth], [Password], [IsEmailVerified], [ActivationCode], [UserGroup], [EmployeeID]) VALUES (2, N'danushkad@gmail.com', N'Danushka', N'Dharmaratne', N'abc', N'0777227727', N'danushkad@gmail.com', N'2018-03-10 00:00:00', N'jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=', 1, N'7b5329d7-9e08-4046-90dc-0c9d05a4905a', N'Admin', 2)
+INSERT INTO [dbo].[Users] ([UserID], [UserName], [FirstName], [LastName], [Address], [Mobile], [EmailID], [DateOfBirth], [Password], [IsEmailVerified], [ActivationCode], [UserGroup], [EmployeeID]) VALUES (9, N'mrkanchana@gmail.com', N'Kanchana', N'Rathnaweera', N'veyangoda', N'0772272662', N'mrkanchana@gmail.com', N'1986-10-01 00:00:00', N'jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=', 1, N'85af45b9-b57e-4697-9bfc-98e065332dc0', N'Admin', 1)
+INSERT INTO [dbo].[Users] ([UserID], [UserName], [FirstName], [LastName], [Address], [Mobile], [EmailID], [DateOfBirth], [Password], [IsEmailVerified], [ActivationCode], [UserGroup], [EmployeeID]) VALUES (22, N'kamal@gmail.com', N'Kamal', N'Perera', N'Colombo', N'0772272662', N'kamal@gmail.com', N'2021-09-07 00:00:00', N'kbTRQoI/fSDF8I32kSLeQ/NfBXqYjZYZ9tMThIXJogM=', 1, N'd068267b-25ea-44e9-8199-7d32c0583dcb', N'User', 1)
+SET IDENTITY_INSERT [dbo].[Users] OFF
+-------------------------------------------------------------------------------------
+SET IDENTITY_INSERT [dbo].[Unit] ON
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (1, N'Each', N'This unit is measured by each')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (2, N'Liters', N'This is measured by each')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (3, N'Meter', N'mesurements for vehicle beading')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (4, N'Cans', N'for oils')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (5, N'Squre Feet', N'Measurement for Carpets')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (8, N'test123 123 1234', N'test123rr44vwrvw')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (45, N'cans', N'123')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (46, N'wewe', N'wewe')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (50, N'uu', N'ii')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (51, N' yy76', N' ww')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (52, N'rr', N'yy')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (53, N' rr4', N' ss')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (54, N'tt', N'qq')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (55, N' r4', N'f5')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (56, N' r4', N'f5')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (57, N' r4', N'f5')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (58, NULL, NULL)
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (59, NULL, N'a')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (60, NULL, N' ')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (61, N' unit', N'uni1234')
+INSERT INTO [dbo].[Unit] ([UnitID], [UnitName], [UnitDescription]) VALUES (62, N' sdfsdfsdfsdf', N' sdfsdfsdfsdf')
+SET IDENTITY_INSERT [dbo].[Unit] OFF
+-----------------------------------------------------------------------------------------------
+
+SET IDENTITY_INSERT [dbo].[Stock] ON
+INSERT INTO [dbo].[Stock] ([StockID], [AvailQty], [MinOrderQty], [DamageQty], [PurchasePrice], [SellingPrice], [ItemID]) VALUES (1, 5, 3, 0, CAST(500.00 AS Decimal(5, 2)), CAST(800.00 AS Decimal(5, 2)), 1)
+INSERT INTO [dbo].[Stock] ([StockID], [AvailQty], [MinOrderQty], [DamageQty], [PurchasePrice], [SellingPrice], [ItemID]) VALUES (2, 15, 5, 0, CAST(400.00 AS Decimal(5, 2)), CAST(500.00 AS Decimal(5, 2)), 15)
+INSERT INTO [dbo].[Stock] ([StockID], [AvailQty], [MinOrderQty], [DamageQty], [PurchasePrice], [SellingPrice], [ItemID]) VALUES (3, 8, 3, 0, CAST(300.00 AS Decimal(5, 2)), CAST(500.00 AS Decimal(5, 2)), 2)
+SET IDENTITY_INSERT [dbo].[Stock] OFF
+---------------------------------------------------------------------------------
+
+SET IDENTITY_INSERT [dbo].[Service] ON
+INSERT INTO [dbo].[Service] ([ServiceID], [ServiceName], [ServiceDescription], [ServicePrice], [ServiceTime], [ServiceImage]) VALUES (28, N'Oil Changes', N'Your automobile is unquestionably one of your most valuable assets, as well as a valued possession. Keeping this in mind, we have gone above and beyond by offering a one-of-a-kind service that includes preventive maintenance, which helps you avoid costly automobile repairs and unexpected failures. Quick lube, oil & filter change, brakes, tires, transmission, rust preventive under-seal, and much more are among our preventative services. Whether your vehicle requires factory-recommended routine maintenance or simply a fast health check, our skilled lube specialists will take care of it with a 100-point visual inspection that keeps your vehicle in peak condition.', CAST(5000.00 AS Decimal(8, 2)), N'1hr', N'oilchanges.jpg')
+INSERT INTO [dbo].[Service] ([ServiceID], [ServiceName], [ServiceDescription], [ServicePrice], [ServiceTime], [ServiceImage]) VALUES (29, N'Exterior Detailing', N'Exterior Detailing is a multi-stage paint rejuvenation method that provides a bright sheen and long-lasting protection to your cars paint. This intricate and skilled operation is carried out by a group of dedicated de-tailers who have been professionally educated in paint restoration techniques. In our detailing services, we employ only industry-certified buffing tools, internationally acknowledged paint levelers, and protective coatings. We only use CarPro Global detailing products, which are widely acknowledged as the industry leader in automotive appearance products and CQuartz nano-ceramic coatings.', CAST(5000.00 AS Decimal(8, 2)), N'3hrs', N'exteriordetailing.png')
+INSERT INTO [dbo].[Service] ([ServiceID], [ServiceName], [ServiceDescription], [ServicePrice], [ServiceTime], [ServiceImage]) VALUES (30, N'Interior Detailing', N'Decontaminating, cleaning, sanitizing, and renewing the entire vehicle interior to make it appear, smell, and feel brand new is the process of interior detailing.Cleaning all surfaces in the cabin, including the seats, carpets, dash, vents, upholsteries, boot compartment, and all hard to reach spots such as door jambs and switches, as well as other nooks and corners that are sometimes missed, is part of the Interior Detailing procedure.Our interior detailing is a time-consuming and delicate process done by a team of experienced detailers who have been properly educated in the cautious handling of current vehicle interiors with high-tech gadgets.', CAST(4000.00 AS Decimal(8, 2)), N'3hrs', N'interiordetailing.jpg')
+INSERT INTO [dbo].[Service] ([ServiceID], [ServiceName], [ServiceDescription], [ServicePrice], [ServiceTime], [ServiceImage]) VALUES (31, N'Engine Detailing', N'As much as you care for your cars appearance and interior, the engine room, too, deserves a little more attention. It can go a long way toward extending the engines life and performance, resulting in a healthier vehicle. The engine bay is painstakingly detailed and cleaned so that it stays cooler and runs more effectively.While completing the de tailing service, our skilled detailers are well-trained in handling current computer-related high-tech engines. Using vapor steam and high-pressure water, all baked-on dirt deposits, dust, oil, and grease are carefully removed from the engine compartment. A protective treatment applied to all rubber and plastic elements will restore the original gloss, giving the engine compartment a show-quality appearance.', CAST(4500.00 AS Decimal(8, 2)), N'2hrs', N'enginedetailing.jpg')
+INSERT INTO [dbo].[Service] ([ServiceID], [ServiceName], [ServiceDescription], [ServicePrice], [ServiceTime], [ServiceImage]) VALUES (32, N'Glass Polishing', N'It is critical to keep your vehicles glasses, especially the windshields, clean to avoid haze, acid rain markings, and scratches that can block your vision and make driving dangerous, especially in wet weather. Even the moonroof and side window lenses can be restored to their original surface purity with our glass polishing technique. Our glass polishing technique consists of three steps: cleansing, polishing, and protection. Oil, grease, bugs, tree sap, and other minor pollutants are all removed throughout the decontamination process. Minor scratches, haze, oily film, acid rain marks, and various other scaly stains will be eliminated during the polishing stage, restoring clarity to the glass surface.
+FlyBy30, a world-class protective Nano coating, is applied to the glass surface in the final step for maximum water and dirt retention capacity.
+This will ensure maximum vision at all times of the day and night, especially in inclement weather, providing you a safer and more comfortable driving experience with a sharper view.', CAST(4500.00 AS Decimal(8, 2)), N'1hr', N'glass.jpg')
+INSERT INTO [dbo].[Service] ([ServiceID], [ServiceName], [ServiceDescription], [ServicePrice], [ServiceTime], [ServiceImage]) VALUES (33, N'K-Mat', N'K-Mat traps, hides, and holds dirt, sand, and moisture, ensuring a clean and dry matting surface throughout the day.Turning the mat over, shaking, vacuuming, or rinsing out trapped dirt and moisture is simple with the K-Mat.K-Mat outlasts rubber, plastic, and cloth mats and is a one-time investment for your car. ', CAST(2500.00 AS Decimal(8, 2)), N'2hrs', N'kmat.jpg')
+INSERT INTO [dbo].[Service] ([ServiceID], [ServiceName], [ServiceDescription], [ServicePrice], [ServiceTime], [ServiceImage]) VALUES (61, N'dd', N'ww', CAST(0.00 AS Decimal(8, 2)), N'111', NULL)
+SET IDENTITY_INSERT [dbo].[Service] OFF
+--------------------------------------------------------------------------------------------
+
+SET IDENTITY_INSERT [dbo].[Item] ON
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (1, N'antenna', N'vehicle antenna', CAST(800.00 AS Decimal(8, 2)), 2, 2, N'antenna.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (2, N'armrest', N'vehicle armrest', CAST(500.00 AS Decimal(8, 2)), 2, 2, N'armrest.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (3, N'oil filter', N'oil filter', CAST(500.00 AS Decimal(8, 2)), 1, 4, N'oil.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (15, N'Engine Oil', N'Engine Oils for Vehicles', CAST(200.00 AS Decimal(8, 2)), 4, 5, N'antenna.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (17, N'pump', N'oil pump', CAST(44444.00 AS Decimal(8, 2)), 8, 3, N'oil.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (22, N'oil filter vvvvvv', N'vvvvvvv', CAST(500.00 AS Decimal(8, 2)), 1, 4, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (32, N'myite123', N'Liqure Bottle 1', CAST(1.00 AS Decimal(8, 2)), 1, 5, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (34, N'myitem', N'ooo', CAST(99.00 AS Decimal(8, 2)), 2, 4, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (35, N'tttnnnnnnn', N'tt', CAST(55.00 AS Decimal(8, 2)), 1, 3, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (39, N'uuuu', N'oo', CAST(33.00 AS Decimal(8, 2)), 1, 4, N'Mountains_landscapes_nature_horizon_night_germany_bavaria_lakes_reflections_skies_3840x2400.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (41, N'new item', N'bla bla', CAST(555.00 AS Decimal(8, 2)), 1, 6, N'Young_lambs_sheep_tree_sheep_baby_1920x1285.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (42, N'tttnnnnnnn', N'tt', CAST(55.00 AS Decimal(8, 2)), 1, 3, N'Mountains_landscapes_nature_horizon_night_germany_bavaria_lakes_reflections_skies_3840x2400.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (44, N'item1', N'this is a new item', CAST(111.00 AS Decimal(8, 2)), 1, 3, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (47, N'ttt', N'tttrrr', CAST(22.00 AS Decimal(8, 2)), 2, 3, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (48, N'ttt', N'tttrrr', CAST(22.50 AS Decimal(8, 2)), 2, 3, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (49, N'pump', N'oil pump', CAST(44444.00 AS Decimal(8, 2)), 8, 3, N'oil.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (50, N'oil filter vvvvvv', N'vvvvvvv', CAST(500.00 AS Decimal(8, 2)), 1, 4, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (51, N'myite123', N'Liqure Bottle 1', CAST(100.00 AS Decimal(8, 2)), 1, 5, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (52, N'myitem', N'ooo', CAST(99.00 AS Decimal(8, 2)), 2, 4, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (53, N'tttnnnnnnn', N'tt', CAST(55.00 AS Decimal(8, 2)), 1, 3, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (54, N'uuuu', N'oo', CAST(33.50 AS Decimal(8, 2)), 1, 4, N'Mountains_landscapes_nature_horizon_night_germany_bavaria_lakes_reflections_skies_3840x2400.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (55, N'new item', N'bla bla', CAST(555.50 AS Decimal(8, 2)), 1, 6, N'Young_lambs_sheep_tree_sheep_baby_1920x1285.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (56, N'tttnnnnnnn', N'tt', CAST(55.00 AS Decimal(8, 2)), 1, 3, N'Mountains_landscapes_nature_horizon_night_germany_bavaria_lakes_reflections_skies_3840x2400.jpg')
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (57, N'item1', N'this is a new item', CAST(111.00 AS Decimal(8, 2)), 1, 3, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (58, N'item123', N'this is a new item', CAST(1110.00 AS Decimal(8, 2)), 1, 3, NULL)
+INSERT INTO [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemPrice], [UnitID], [CategoryID], [ItemImage]) VALUES (59, N'r', N'r', CAST(3.00 AS Decimal(8, 2)), 1, 2, NULL)
+SET IDENTITY_INSERT [dbo].[Item] OFF
+-------------------------------------------------------------------------------------------------
+
+SET IDENTITY_INSERT [dbo].[InvoiceDetails] ON
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (17, N'A', CAST(20.00 AS Decimal(8, 2)), 3, 32, 3, 1, CAST(20.22 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (33, N'BB', CAST(50.00 AS Decimal(8, 2)), 3, 30, 15, 2, CAST(50.45 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (122, N'oil filter', CAST(500.00 AS Decimal(8, 2)), 63, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (123, N'antenna', CAST(800.00 AS Decimal(8, 2)), 63, 28, 1, 1, CAST(800.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (124, N'armrest', CAST(500.00 AS Decimal(8, 2)), 64, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (125, N'oil filter', CAST(500.00 AS Decimal(8, 2)), 64, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (126, N'myitem', CAST(99.00 AS Decimal(8, 2)), 65, 28, 1, 1, CAST(99.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (127, N'antenna', CAST(800.00 AS Decimal(8, 2)), 65, 28, 1, 1, CAST(800.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (130, N'antenna', CAST(800.00 AS Decimal(8, 2)), 67, 28, 1, 1, CAST(800.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (131, N'myite123', CAST(1.00 AS Decimal(8, 2)), 67, 28, 1, 1, CAST(1.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (132, N'armrest', CAST(500.00 AS Decimal(8, 2)), 68, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (133, N'uuuu', CAST(33.00 AS Decimal(8, 2)), 68, 28, 1, 1, CAST(33.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (134, N'armrest', CAST(500.00 AS Decimal(8, 2)), 69, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (135, N'oil filter', CAST(500.00 AS Decimal(8, 2)), 69, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (136, N'oil filter', CAST(500.00 AS Decimal(8, 2)), 70, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (137, N'myitem', CAST(99.00 AS Decimal(8, 2)), 70, 28, 1, 1, CAST(99.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (138, N'myite123', CAST(1.00 AS Decimal(8, 2)), 70, 28, 1, 1, CAST(1.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (140, N'new item', CAST(555.00 AS Decimal(8, 2)), 71, 28, 1, 1, CAST(555.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (141, N'oil filter', CAST(500.00 AS Decimal(8, 2)), 71, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (142, N'antenna', CAST(800.00 AS Decimal(8, 2)), 72, 28, 1, 1, CAST(800.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (143, N'armrest', CAST(500.00 AS Decimal(8, 2)), 73, 28, 1, 1, CAST(500.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (144, N'Engine Oil', CAST(200.00 AS Decimal(8, 2)), 74, 28, 1, 10, CAST(2000.00 AS Decimal(8, 2)), 4, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (145, N'Engine Oil', CAST(200.00 AS Decimal(8, 2)), 75, 28, 1, 1, CAST(200.00 AS Decimal(8, 2)), 4, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (146, N'oil filter vvvvvv', CAST(500.00 AS Decimal(8, 2)), 76, 28, 1, 2, CAST(1000.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (147, N'oil filter vvvvvv', CAST(500.00 AS Decimal(8, 2)), 77, 28, 1, 3, CAST(1500.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (148, N'Engine Oil', CAST(200.00 AS Decimal(8, 2)), 78, 28, 1, 3, CAST(600.00 AS Decimal(8, 2)), 4, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (149, N'Oil Changes', CAST(500.00 AS Decimal(8, 2)), 79, 28, NULL, 1, CAST(500.00 AS Decimal(8, 2)), 1, N's         ')
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (150, N'Exterior Detailing', CAST(500.00 AS Decimal(8, 2)), 79, 29, NULL, 1, CAST(5000.00 AS Decimal(8, 2)), 1, N's         ')
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (151, N'oil filter', CAST(500.00 AS Decimal(8, 2)), 79, 28, 1, 10, CAST(500.00 AS Decimal(8, 2)), 1, N'i         ')
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (152, N'uuuu', CAST(33.00 AS Decimal(8, 2)), 80, 28, 1, 1, CAST(33.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (154, N'Oil Changes', CAST(500.00 AS Decimal(8, 2)), 80, 28, 1, 10, CAST(5000.00 AS Decimal(8, 2)), 2, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (155, N'Exterior Detailing', CAST(5000.00 AS Decimal(8, 2)), 81, 28, 1, 1, CAST(5000.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (156, N'Exterior Detailing', CAST(5000.00 AS Decimal(8, 2)), 82, 28, 1, 19, CAST(95000.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (163, N'Exterior Detailing', CAST(5000.00 AS Decimal(8, 2)), 88, 29, NULL, 1, CAST(5000.00 AS Decimal(8, 2)), 1, NULL)
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (164, N'uuuu', CAST(33.00 AS Decimal(8, 2)), 89, NULL, 39, 10, CAST(330.00 AS Decimal(8, 2)), 1, N'i         ')
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (165, N'new item', CAST(555.50 AS Decimal(8, 2)), 90, 28, NULL, 1, CAST(555.50 AS Decimal(8, 2)), 1, N's         ')
+INSERT INTO [dbo].[InvoiceDetails] ([DetailID], [ItemServiceName], [Price], [InvoiceID], [ServiceID], [ItemID], [Qty], [Total], [UnitID], [Remarks]) VALUES (166, N'Oil Changes', CAST(5000.00 AS Decimal(8, 2)), 90, 28, NULL, 1, CAST(5000.00 AS Decimal(8, 2)), 1, N's         ')
+SET IDENTITY_INSERT [dbo].[InvoiceDetails] OFF
+--------------------------------------------------------------------------------------------------
+SET IDENTITY_INSERT [dbo].[Invoice] ON
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (3, CAST(250.00 AS Decimal(8, 2)), 2, N'2021-08-07 00:00:00', N'08:10', 1, 1, 1, NULL)
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (4, CAST(900.00 AS Decimal(8, 2)), 1, N'2021-07-07 00:00:00', N'09:00', 2, 2, 2, NULL)
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (11, CAST(950.00 AS Decimal(8, 2)), 1, N'2021-10-07 00:00:00', N'10:00', 1, 1, 1, NULL)
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (13, CAST(500.00 AS Decimal(8, 2)), 1, N'2021-10-08 00:00:00', N'13:00', 2, 1, 1, NULL)
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (59, CAST(500.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'16:04', 1, 1, 1, NULL)
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (60, CAST(500.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'14:02', 1, 1, 1, NULL)
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (61, CAST(800.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (62, CAST(500.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (63, CAST(500.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'17:00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (64, CAST(500.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'03:00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (65, CAST(99.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (66, CAST(800.00 AS Decimal(8, 2)), 0, NULL, N'15:00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (67, CAST(800.00 AS Decimal(8, 2)), 0, NULL, N'13:00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (68, CAST(500.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (69, CAST(500.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (70, CAST(500.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (71, CAST(555.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (72, CAST(800.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'16:00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (73, CAST(500.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (74, CAST(2000.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (75, CAST(200.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (76, CAST(1000.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (77, CAST(1500.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (78, CAST(600.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (79, CAST(500.00 AS Decimal(8, 2)), 0, N'2021-09-19 00:00:00', N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (80, CAST(33.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (81, CAST(5000.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (82, CAST(95000.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (83, CAST(5000.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (84, CAST(500000.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (85, CAST(70000.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (86, CAST(4500.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (87, CAST(4500.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (88, CAST(5000.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 1, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (89, CAST(330.00 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 9, 1, N'invoice')
+INSERT INTO [dbo].[Invoice] ([InvoiceID], [Total], [Discount], [InvDate], [InvTime], [PayType], [UserID], [VehicleID], [Remarks]) VALUES (90, CAST(555.50 AS Decimal(8, 2)), 0, NULL, N'10.00', 1, 9, 1, N'invoice')
+SET IDENTITY_INSERT [dbo].[Invoice] OFF
+---------------------------------------------------------------------------------------------
+
+SET IDENTITY_INSERT [dbo].[Inquiry] ON
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (1, NULL, NULL, N'1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111222222222222222222222222222222222222222222222222222222222222')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (2, NULL, NULL, N'1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111222222222222222222222222222222222222222222222222222222222222')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (3, NULL, NULL, N'1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111222222222222222222222222222222222222222222222222222222222222')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (4, N'qqqqq', N'qqqqq@gmail.com', N'wnbdwjwdbwekjdwe')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (5, N'ssssssssss', N'sssssssssssss', N'ssssssssssssss')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (6, N'ggggggggggg', N'hggggggggggggggg', N'gggggggggggggggggg')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (7, N'mt message', N'Vindhiz@gmail.com', N'this is my message')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (8, N'test', N'vindhiz@gmail.com', N'test')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (9, N'test3', N'test@gmail.com', N'test4')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (10, N'aaa', N'aaa@gmail.com', N'aaa')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (11, N'ttttttt', N'test@gmail.com', N'tttt')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (12, N'mmmm', N'mrkanchana@gmail.com', N'mmmmmmm')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (13, N'htrjrt', N'jeyrjer', N'jeyrj')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (14, N'vvvvvvvv', N'vvvvvvvvv', N'vvvvvvvvvvv')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (15, N'pppppp', N'ppppppp', N'pppppppp')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (16, N'jjjjjjjjjj', N'jjjjjjjjjjj', N'jjjjjjjjjjjjjjjjj')
+INSERT INTO [dbo].[Inquiry] ([Id], [Name], [Email], [Message]) VALUES (17, N'gfgjgnhnrthjrti', N'uyjbjb', N'uhubjb')
+SET IDENTITY_INSERT [dbo].[Inquiry] OFF
+------------------------------------------------------------------------------------------------
+
+SET IDENTITY_INSERT [dbo].[Employee] ON
+INSERT INTO [dbo].[Employee] ([EmployeeID], [FirstName], [LastName], [Address], [MOb], [Designation]) VALUES (1, N'Vindhi', N'Ruki', NULL, NULL, NULL)
+INSERT INTO [dbo].[Employee] ([EmployeeID], [FirstName], [LastName], [Address], [MOb], [Designation]) VALUES (2, N'Danushka', N'Dharmaratne', NULL, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[Employee] OFF
+--------------------------------------------------------------------------------------------
+
+SET IDENTITY_INSERT [dbo].[Category] ON
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (2, N'Accessories', N'My Accessories')
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (3, N'Engine Spare Parts', N'Engine Spare Parts')
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (4, N'Spare Parts', N'Spare Parts')
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (5, N'Lubricants', N'Lubricants')
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (6, N'Flooring (Carpets)', N'Flooring (Carpets)')
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (8, N'11111111111', N'fsljbnsflbsfeufh43uipgf341ui431ui341up431ug')
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (9, N'fsgghr', N'hehtrhw8up8yp58t')
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (16, N'qwqw', N'qwqw33333')
+INSERT INTO [dbo].[Category] ([CategoryID], [CategoryName], [CategoryDescription]) VALUES (18, N'avvVVV', N'vvvs')
+SET IDENTITY_INSERT [dbo].[Category] OFF
+----------------------------------------------------------------------------------------------
+
+SET IDENTITY_INSERT [dbo].[AppointmentService] ON
+INSERT INTO [dbo].[AppointmentService] ([AppointmentServID], [AppointmentID], [UserID], [VehicleID], [ServiceID]) VALUES (1, 5, 9, 4, 33)
+INSERT INTO [dbo].[AppointmentService] ([AppointmentServID], [AppointmentID], [UserID], [VehicleID], [ServiceID]) VALUES (2, 5, 9, 4, 32)
+INSERT INTO [dbo].[AppointmentService] ([AppointmentServID], [AppointmentID], [UserID], [VehicleID], [ServiceID]) VALUES (3, 5, 1, 1, 28)
+INSERT INTO [dbo].[AppointmentService] ([AppointmentServID], [AppointmentID], [UserID], [VehicleID], [ServiceID]) VALUES (5, 27, 1, 5, 28)
+SET IDENTITY_INSERT [dbo].[AppointmentService] OFF
+----------------------------------------------------------------------------------------------------
+SET IDENTITY_INSERT [dbo].[Appointment] ON
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (5, N'2021-06-15 00:00:00', N'08:00:00', N'10:00:00', N'Test one', N'Confirmed', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (11, N'2021-05-02 00:00:00', N'10:00:00', N'12:00:00', N'Test 2', N'Confirmed', 9, 4)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (13, N'2021-05-13 00:00:00', N'09:00:00', N'10:00:00', N'trest3', N'Pending', 2, 2)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (14, N'2021-04-14 00:00:00', N'04:00:00', N'05:00:00', N'abc', N'Confirmed', 1, 5)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (17, N'2021-05-25 00:00:00', N'06:00:00', N'09:00:00', N'qqqqqq', N'Confirmed', 2, 2)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (18, N'2021-06-30 00:00:00', N'20:00:00', N'21:00:00', N'testing ', N'Confirmed', 9, 4)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (20, N'2021-07-21 00:00:00', N'16:00:00', N'17:00:00', N'first appintment', N'Pending', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (21, N'2021-07-16 00:00:00', N'16:00:00', N'17:00:00', N'first appintment', N'Pending', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (22, N'2021-07-13 00:00:00', N'17:00:00', N'19:00:00', N'first appintment', N'Pending', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (23, N'2021-07-16 00:00:00', N'17:00:00', N'19:00:00', N'first appintment', N'Pending', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (24, N'2021-07-20 00:00:00', N'03:00:00', N'5:0:00', N'first appintment', N'Pending', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (25, N'2021-07-06 00:00:00', N'05:05:00', N'7:5:00', N'first appintment', N'Pending', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (26, N'2021-08-25 00:00:00', N'7:30:00', N'9:30:00', N'first appintment', N'Pending', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (27, N'2021-08-24 00:00:00', N'03:30:00', N'5:30:00', N'first appintment', N'Pending', 1, 5)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (30, N'2021-09-10 00:00:00', N'17:06:00', N'19:6:00', N'first appintment', N'Pending', 1, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (31, N'2021-09-22 00:00:00', N'16:00:00', N'18:0:00', N'first appintment', N'Pending', 9, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (32, N'2021-09-21 00:00:00', N'17:00:00', N'19:0:00', N'first appintment', N'Pending', 9, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (33, N'2021-09-23 00:00:00', N'16:00:00', N'18:0:00', N'first appintment', N'Pending', 9, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (34, N'2021-09-22 00:00:00', N'16:09:00', N'18:9:00', N'first appintment', N'Pending', 9, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (35, N'2021-09-22 00:00:00', N'16:00:00', N'18:0:00', N'first appintment', N'Pending', 9, 1)
+INSERT INTO [dbo].[Appointment] ([AppointmentID], [AppointmentDate], [AppointmentStartTime], [AppointmentEndTime], [AppointmentDescription], [AppointmentStatus], [UserID], [VehicleID]) VALUES (36, N'2021-09-23 00:00:00', N'17:08:00', N'19:8:00', N'first appintment', N'Confirmed', 9, 1)
+SET IDENTITY_INSERT [dbo].[Appointment] OFF
+
+
+
+----------------------------------------------------
+DROP TABLE [dbo].[Inquiry]
+DROP TABLE [dbo].[Customer]
+DROP TABLE [dbo].[AppointmentService]
+DROP TABLE [dbo].[Appointment]
+DROP TABLE [dbo].[InvoiceDetails]
+DROP TABLE [dbo].[Invoice]
+DROP TABLE [dbo].[Stock]
+DROP TABLE [dbo].[Item]
+DROP TABLE [dbo].[Vehicle]
+DROP TABLE [dbo].[Unit]
+DROP TABLE [dbo].[Category]
+DROP TABLE [dbo].[Service]
+DROP TABLE [dbo].[User]
+DROP TABLE [dbo].[Employee]

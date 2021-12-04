@@ -1,0 +1,297 @@
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Amms.dll.config
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Amms.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Amms.pdb
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\csc.exe
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\csc.exe.config
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\csc.rsp
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\csi.exe
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\csi.exe.config
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\csi.rsp
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.AppContext.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Console.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.IO.Compression.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Net.Http.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Net.Sockets.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.ValueTuple.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Xml.XPath.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\vbc.exe
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\vbc.exe.config
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\vbc.rsp
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\VBCSCompiler.exe
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Antlr3.Runtime.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportSource.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.Shared.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\EntityFramework.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Newtonsoft.Json.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.Helpers.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.Mvc.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.Optimization.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.Razor.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.WebPages.Deployment.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.WebPages.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.WebPages.Razor.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\WebGrease.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\stdole.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\EntityFramework.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.Helpers.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.Mvc.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.Optimization.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.Razor.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.WebPages.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.WebPages.Deployment.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\System.Web.WebPages.Razor.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Newtonsoft.Json.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Antlr3.Runtime.pdb
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\obj\Debug\Amms.csproj.CoreCompileInputs.cache
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\obj\Debug\Amms.csproj.CopyComplete
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\obj\Debug\Amms.dll
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\obj\Debug\Amms.pdb
+C:\Users\admin\Downloads\AmmsSolution\AmmsSolution\AmmsSolution\Amms\obj\Debug\Amms.csprojAssemblyReference.cache
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Amms.dll.config
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Amms.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Amms.pdb
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\csc.exe
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\csc.exe.config
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\csc.rsp
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\csi.exe
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\csi.exe.config
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\csi.rsp
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.AppContext.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Console.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.IO.Compression.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Net.Http.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Net.Sockets.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.ValueTuple.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Xml.XPath.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\vbc.exe
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\vbc.exe.config
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\vbc.rsp
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\VBCSCompiler.exe
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Antlr3.Runtime.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportSource.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.Shared.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\EntityFramework.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Newtonsoft.Json.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.Helpers.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.Mvc.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.Optimization.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.Razor.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.WebPages.Deployment.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.WebPages.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.WebPages.Razor.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\WebGrease.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\stdole.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\EntityFramework.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.Helpers.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.Mvc.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.Optimization.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.Razor.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.WebPages.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.WebPages.Deployment.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\System.Web.WebPages.Razor.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Newtonsoft.Json.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Antlr3.Runtime.pdb
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\obj\Debug\Amms.csproj.CoreCompileInputs.cache
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\obj\Debug\Amms.csproj.CopyComplete
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\obj\Debug\Amms.dll
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\obj\Debug\Amms.pdb
+C:\Users\admin\Documents\AmmsSolution - Copy\Amms\obj\Debug\Amms.csprojAssemblyReference.cache
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Amms.dll.config
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Amms.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Amms.pdb
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\csc.exe
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\csc.exe.config
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\csc.rsp
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\csi.exe
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\csi.exe.config
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\csi.rsp
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.AppContext.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Console.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.IO.Compression.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Net.Http.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Net.Sockets.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.ValueTuple.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Xml.XPath.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\vbc.exe
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\vbc.exe.config
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\vbc.rsp
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\VBCSCompiler.exe
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Antlr3.Runtime.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportSource.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.Shared.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\EntityFramework.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Newtonsoft.Json.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.Helpers.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.Mvc.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.Optimization.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.Razor.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.WebPages.Deployment.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.WebPages.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.WebPages.Razor.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\WebGrease.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\stdole.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\EntityFramework.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.Helpers.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.Mvc.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.Optimization.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.Razor.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.WebPages.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.WebPages.Deployment.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\System.Web.WebPages.Razor.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Newtonsoft.Json.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Antlr3.Runtime.pdb
+C:\Users\admin\Documents\AmmsSolution\Amms\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\admin\Documents\AmmsSolution\Amms\obj\Debug\Amms.csproj.CoreCompileInputs.cache
+C:\Users\admin\Documents\AmmsSolution\Amms\obj\Debug\Amms.csproj.CopyComplete
+C:\Users\admin\Documents\AmmsSolution\Amms\obj\Debug\Amms.dll
+C:\Users\admin\Documents\AmmsSolution\Amms\obj\Debug\Amms.pdb
+C:\Users\admin\Documents\AmmsSolution\Amms\obj\Debug\Amms.csprojAssemblyReference.cache

@@ -1,0 +1,46 @@
+﻿@{
+	ViewBag.Title = "VerifyAccount";
+}
+
+<h2> Verify Account</h2>
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+	<div class="alert alert-success">
+		Your account has been activated successfully. Click here to @Html.ActionLink("Login", "Login", "User")
+	</div>
+}
+else
+{
+	<div class="alert alert-danger">
+		<strong>Error!</strong> @ViewBag.Message
+	</div>
+}
+
+@*@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+	if (ViewBag.Message != null)
+	{
+		if (ViewBag.Type == true)
+		{
+			<script type="text/javascript">
+
+				window.onload = function () {
+					alert("@ViewBag.Message" + URL:"https://localhost:44339/User/Login");
+
+				};
+			</script>
+		}
+
+		else
+		{
+			<script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+
+				 };
+			</script>
+		}
+	}
+
+}*@

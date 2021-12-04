@@ -1,0 +1,291 @@
+﻿@model Amms.Models.Admin
+@{
+	ViewBag.Title = "Registration";
+	//Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+	#confirm {
+		display: none;
+		background-color: #514E61;
+		color: #FFFFFF;
+		border: 1px solid #aaa;
+		position: fixed;
+		width: 250px;
+		left: 50%;
+		margin-left: -100px;
+		padding: 6px 8px 8px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+		#confirm button {
+			background-color: #48E5DA;
+			display: inline-block;
+			border-radius: 5px;
+			border: 1px solid #aaa;
+			padding: 5px;
+			text-align: center;
+			width: 80px;
+			cursor: pointer;
+		}
+
+		#confirm .message {
+			text-align: left;
+		}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+
+<body>
+
+	@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+	{
+		if (ViewBag.Message != null)
+		{
+			if (ViewBag.Type == true)
+			{
+				<script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+				
+				};
+				</script>
+			}
+
+			else
+			{
+				<script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+					
+				 };
+				</script>
+			}
+		}
+
+	}
+
+
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			<section>
+
+				<div class="col-xs-12 col-sm-12 col-md-2 sidebar">
+					<div class="widget widget-categories">
+						<div class="widget-content">
+							<ul class="list-unstyled">
+								<li>
+									<a href="@Url.Action("GetAllReservations", "Admin")"><i class="fa fa-angle-double-right"></i>Reservation</a>
+								</li>
+								<li>
+									<a href="@Url.Action("Index", "Invoice")"><i class="fa fa-angle-double-right"></i>Invoice</a>
+								</li>
+								<li>
+									<a href="@Url.Action("AddItem", "Admin")"><i class="fa fa-angle-double-right"></i>Item</a>
+								</li>
+								<li>
+									<a href="@Url.Action("AddUser", "Admin")"><i class="fa fa-angle-double-right"></i>Customer</a>
+								</li>
+								<li>
+									<a href="@Url.Action("AddService", "Admin")"><i class="fa fa-angle-double-right"></i>Service</a>
+								</li>
+								<li>
+									<a href="@Url.Action("AddUnit", "Admin")"><i class="fa fa-angle-double-right"></i>Unit</a>
+								</li>
+								<li>
+									<a href="@Url.Action("AddCategory", "Admin")"><i class="fa fa-angle-double-right"></i>Category</a>
+								</li>
+								<li>
+									<a href="@Url.Action("Index", "Report")"><i class="fa fa-angle-double-right"></i>Report Generation</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-xs-12 col-sm-12 col-md-10 shop-content">
+
+					<h2>Registration</h2>
+					<div class="form-horizontal">
+						<hr />
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+						@if (ViewBag.Button == "update")
+						{
+							<div hidden="hidden">
+								@Html.EditorFor(model => model.Myuser.UserID, new { htmlAttributes = new { @class = "form-control" } })
+							</div>
+						}
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myuser.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Myuser.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myuser.FirstName, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myuser.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Myuser.LastName, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myuser.LastName, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myuser.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Myuser.Address, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myuser.Address, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myuser.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Myuser.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myuser.Mobile, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myuser.EmailID, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Myuser.EmailID, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.Myuser.EmailID, "", new { @class = "text-danger" })
+									@Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							@if (ViewBag.Button == "add")
+							{
+								<div class="form-group">
+									@Html.LabelFor(model => model.Myuser.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Myuser.Password, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Myuser.Password, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.Myuser.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Myuser.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Myuser.ConfirmPassword, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							}
+
+							else
+							{
+								<div class="form-group" hidden="hidden">
+									@Html.LabelFor(model => model.Myuser.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Myuser.Password, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Myuser.Password, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="form-group" hidden="hidden">
+									@Html.LabelFor(model => model.Myuser.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Myuser.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+										@Html.ValidationMessageFor(model => model.Myuser.ConfirmPassword, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							}
+
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Myuser.UserGroup, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.DropDownListFor(model => model.Myuser.UserGroup, ViewData["list"] as SelectList)
+
+
+								</div>
+							</div>
+
+							<div class="checkbox">
+								<label>
+									<input type="checkbox">
+									I agree to <a href="#">the Terms and Conditions</a>
+								</label>
+								<p> By clicking Sign up, you agree to our terms and conditions and confirm that you have read our plociies.</p>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-10">
+
+									@if (ViewBag.Button == "add")
+									{
+										<button type="submit" class="btn btn-primary text-center mt-30">Add Customer</button>
+										<button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Update Customer</button>
+									}
+									else
+									{
+										<button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Add Customer</button>
+										<button type="submit" class="btn btn-primary text-center mt-30">Update Customer</button>
+									}
+
+								</div>
+							</div>
+						</div>
+
+					<section id="shopcart" class="shop shop-cart">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12  col-sm-12  col-md-10">
+									<div class="cart-table table-responsive">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+
+													<th style="width: 10%;">First Name</th>
+													<th style="width: 10%;">Last Name</th>
+													<th style="width: 10%;">Email/Username</th>
+													<th style="width: 10%;">Address</th>
+													<th style="width: 10%;">Mobile</th>												
+													<th style="width: 10%;">User Group</th>
+													<th style="width: 10%;"></th>
+													<th style="width: 10%;"></th>
+													<th style="width: 10%;"></th>
+													<th style="width: 10%;"></th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach (var i in Model.UserList)
+												{
+													<tr>
+														<td class="cart-product-item">@i.FirstName</td>
+														<td class="cart-product-item">@i.LastName</td>
+														<td class="cart-product-item">@i.EmailID</td>
+														<td class="cart-product-item">@i.Address</td>
+														<td class="cart-product-item">@i.Mobile</td>												
+														<td class="cart-product-item">@i.UserGroup</td>
+														<td><a href="@Url.Action("UpdateUser", "Admin", new { id = i.UserID }, null)"><img src="~/Content/images/icons/edit.png" width="30" height="30" data-toggle="tooltip" data-placement="bottom" title="edit" /></a></td>
+														<td><a href="@Url.Action("DeleteUser", "Admin", new { id = i.UserID }, null)"><img src="~/Content/images/icons/delete.png" width="30" height="30" data-toggle="tooltip" data-placement="bottom" title="delete"  /></a></td>
+														<td><a href="@Url.Action("Profile", "Admin", new { id = i.UserID }, null)"><img src="~/Content/images/icons/profile.png" width="30" height="30"  data-toggle="tooltip" data-placement="bottom" title="profile" /></a></td>
+														<td><a href="@Url.Action("GetReservationAdmin", "Resevation", new { id = i.UserID }, null)"><img src="~/Content/images/icons/reservation.png" width="35" height="30" data-toggle="tooltip" data-placement="bottom" title="reservation" /></a></td>
+													</tr>
+												}
+											</tbody>
+										</table>
+									</div>
+									<!-- .cart-table end -->
+								</div>
+							</div>
+							<!-- .row end -->
+						</div>
+						<!-- .container end -->
+					</section>
+
+				</div>
+
+			</section>
+		}
+	
+</body>
+
+
+@section Scripts{
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+

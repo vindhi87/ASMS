@@ -1,0 +1,23 @@
+﻿@model Amms.Models.Reservation
+@{
+	ViewBag.Title = "Services";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Services</h2>*@
+
+<section id="blog" class="blog blog-grid">
+	<h2>Services</h2>
+	<div class="container">
+		<div class="row">
+			@foreach (var sitem in Model.ServList)
+			{
+				@Html.Partial("_ServiceItem", sitem)
+			}
+
+		</div>
+
+		</div>
+		<!-- .container end -->
+	</section>
+

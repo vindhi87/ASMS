@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Getreport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+	<section>
+		<h4>ASMS Reports</h4>
+
+		<div class="col-xs-12 col-sm-12 col-md-12 sidebar">
+
+			<div class="form-group  col-md-3">
+				<input type="submit" value="Customer List" class="btn btn-info text-center mt-50" onclick="location.href='@Url.Action("customerlist","Report")'">
+			</div>
+			<div class="form-group col-md-3">
+				<input type="submit" value="Service List" class="btn btn-info text-center mt-50" onclick="location.href='@Url.Action("servicelist","Report")'">
+			</div>
+			<div class="form-group col-md-3">
+				<input type="submit" value="Appointments" class="btn btn-info text-center mt-50" onclick="location.href='@Url.Action("appointments","Report")'">
+			</div>
+			<div class="form-group col-md-3">
+				<input type="submit" value="Invoice Details" class="btn btn-info text-center mt-50" onclick="location.href='@Url.Action("monthlysales","Report")'">
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-12 col-md-6 sidebar">
+
+			
+
+		</div>
+	</section>

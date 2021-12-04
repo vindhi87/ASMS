@@ -1,0 +1,91 @@
+﻿@model Amms.Models.ShopItem
+@{
+    ViewBag.Title = "ShopCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>ShopCart</h2>*@
+
+<!-- Shop Cart
+============================================= -->
+	<body>
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			<section id="shopcart" class="shop shop-cart">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12  col-sm-12  col-md-12">
+							<div class="cart-table table-responsive">
+								<table class="table table-bordered">
+									<thead>
+										<tr class="cart-product">
+											<th class="cart-product-item"></th>
+											<th class="cart-product-item">Product</th>
+											<th class="cart-product-price">Price</th>
+											<th class="cart-product-quantity">Quantity</th>
+											<th class="cart-product-total">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										@if (Model.ItemList.Count != 0)
+										{
+											foreach (var i in Model.ItemList)
+											{
+												<tr class="cart-product">
+													<td class="cart-product-item">
+														<div class="cart-product-remove">
+															<i class="fa fa-close"></i>
+														</div>
+														<div class="cart-product-img">
+															<img src="~/Content/images/shop/grid/@i.ItemImage" alt="product" with="50" height="50" />
+														</div>
+													</td>
+													<td>
+														<div class="cart-product-name">
+															<h5>@i.ItemName</h5>
+
+														</div>
+													</td>
+													<td class="cart-product-price">@i.ItemPrice</td>
+													<td class="cart-product-quantity">
+														@*<input type="button" onclick="decrementValue()" value="-" />*@
+														<input type="text" name="quantity" value="@i.qty" maxlength="2" max="10" size="1" id="number" readonly="readonly" />
+														@*<input type="button" onclick="incrementValue()" value="+" />*@
+													</td>
+													<td class="cart-product-price"> @i.Total</td>
+												</tr>
+											}
+										}
+										else
+										{
+
+										}
+									</tbody>
+								</table>
+							</div>
+							<!-- .cart-table end -->
+						</div>
+						<!-- .col-md-12 end -->
+						<!-- .col-md-6 end -->
+						<div class="col-xs-12  col-sm-12  col-md-6">
+							<div class="cart-total-amount" style="padding:50px 20px">
+								<h6 style="margin-bottom:2px">Cart Totals :</h6>
+								<ul class="list-unstyled">
+									<li>Order Total :<span class="pull-right text-right"><h6>Rs. @Model.CartTotal</h6></span></li>
+									<input type="text" id="tota" name="total" value="@Model.CartTotal" hidden="hidden" />
+								</ul>
+								<button type="submit" class="btn btn-primary pull-left pull-none-xs" formaction="@Url.Action("Addtodb", "Shop")" formmethod="post"> Proceed to Payment</button>
+							</div>
+
+						</div>
+
+						<!-- .col-md-6 end -->
+					</div>
+					<!-- .row end -->
+				</div>
+				<!-- .container end -->
+			</section>
+}
+			<!-- #shopcart end -->
+</body>

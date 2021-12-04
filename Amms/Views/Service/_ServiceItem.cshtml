@@ -1,0 +1,43 @@
+﻿@model Amms.Models.Service
+
+<!-- Entry Article #1 -->
+<div class="col-xs-12 col-sm-6 col-md-4">
+	<div class="entry mb-30">
+		<div class="entry-img">
+			<a href="#">
+				<img src="~/Content/images/service/@Model.ServiceImage" alt="Entry Title">
+			</a>
+		</div>
+		<!-- .entry-img end -->
+		<div class="entry-content">
+			<!--<div class="entry-format">
+				<i class="fa fa-image"></i>
+			</div>-->
+			<div class="entry-title">
+				<h3>
+					<a href="#">@Model.ServiceName</a>
+				</h3>
+			</div>
+			<!-- .entry-title end -->
+			<ul class="entry-meta list-inline clearfix">
+				<li class="entry-date">
+					Average Price: <span>@Model.ServicePrice</span>
+				</li>
+				<li class="entry-author">
+					Average time:
+					<a href="#">@Model.ServiceTime</a>
+				</li>
+				<!--	<li class="entry-num-comments">Comments:
+						<a href="#">45</a>
+					</li>-->
+			</ul>
+			<!-- .entry-meta end -->
+			<div class="entry-snippet">
+				<p>@Model.ServiceDescription</p>
+			</div>
+			<!-- .entry-snippet end -->
+		</div>
+		<!-- .entry-content end -->
+	</div>
+	<!-- .entry end -->
+</div>

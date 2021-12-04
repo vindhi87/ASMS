@@ -1,0 +1,187 @@
+﻿@model Amms.Models.Admin
+@{
+	ViewBag.Title = "Appointments";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+	#confirm {
+		display: none;
+		background-color: #514E61;
+		color: #FFFFFF;
+		border: 1px solid #aaa;
+		position: fixed;
+		width: 250px;
+		left: 50%;
+		margin-left: -100px;
+		padding: 6px 8px 8px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+		#confirm button {
+			background-color: #48E5DA;
+			display: inline-block;
+			border-radius: 5px;
+			border: 1px solid #aaa;
+			padding: 5px;
+			text-align: center;
+			width: 80px;
+			cursor: pointer;
+		}
+
+		#confirm .message {
+			text-align: left;
+		}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+
+
+	@if (ViewBag.Message != null)
+	{
+		if (ViewBag.Type == true)
+		{
+			<script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+
+				};
+			</script>
+		}
+
+		else
+		{
+			<script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+
+				 };
+			</script>
+		}
+	}
+
+
+
+<section class="contact">
+
+	<div class="col-xs-12 col-sm-12 col-md-2 sidebar">
+		<div class="widget widget-categories">
+			<div class="widget-content">
+				<ul class="list-unstyled">
+					<li>
+						<a href="@Url.Action("GetAllReservations", "Admin")"><i class="fa fa-angle-double-right"></i>Reservation</a>
+					</li>
+					<li>
+						<a href="@Url.Action("Index", "Invoice")"><i class="fa fa-angle-double-right"></i>Invoice</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddItem", "Admin")"><i class="fa fa-angle-double-right"></i>Item</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddUser", "Admin")"><i class="fa fa-angle-double-right"></i>Customer</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddService", "Admin")"><i class="fa fa-angle-double-right"></i>Service</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddUnit", "Admin")"><i class="fa fa-angle-double-right"></i>Unit</a>
+					</li>
+					<li>
+						<a href="@Url.Action("AddCategory", "Admin")"><i class="fa fa-angle-double-right"></i>Category</a>
+					</li>
+					<li>
+						<a href="@Url.Action("Index", "Report")"><i class="fa fa-angle-double-right"></i>Report Generation</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	@using (Html.BeginForm())
+	{
+
+
+		<div class="col-xs-12 col-sm-12 col-md-10 sidebar">
+			<div class="container">
+				<h4>Reservations</h4>
+				<div class="row">
+					<div >
+						<input type="submit" value="All Reservations" class="btn btn-info text-center" formaction="@Url.Action("GetAllReservations", "Admin")" formmethod="get" />
+						<input type="submit" value="Pending Reservations" class="btn btn-info text-center" formaction="@Url.Action("PendingReservations", "Admin")" formmethod="post" />
+						<input type="submit" value="Confirmed Reservations" class="btn btn-info text-center" formaction="@Url.Action("ConfirmedReservations", "Admin")" formmethod="post" />
+						<input type="submit" value="View Available Time Slots" class="btn btn-info text-center" formaction="@Url.Action("ViewAvailableTimeSlots", "Admin")" formmethod="get" />
+					</div>
+				</div>
+				<br />
+
+				<div class="row">
+					<div class="col-xs-12  col-sm-12  col-md-8">
+						<div class="container">
+
+
+							<div class="cart-table table-responsive">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Appointment ID</th>
+											<th>Appointment Date</th>
+											<th>Appointment Start Time</th>
+											<th>Appointment End Time</th>
+											<th>Appointment Status</th>
+											<th> </th>
+											<th> </th>
+
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var i in Model.ListAppoinments)
+										{
+											if (i.AppointmentStatus == "Pending")
+											{
+												@*<tr style="background-color:lightgreen">*@
+
+												<tr>
+													<td class="cart-product-item" align="center">@i.AppointmentID</td>
+													<td class="cart-product-item" align="center">@i.AppointmentDate.ToShortDateString()</td>
+													<td class="cart-product-item" align="center">@i.AppointmentStartTime</td>
+													<td class="cart-product-item" align="center">@i.AppointmentEndTime</td>
+													<td class="cart-product-item" align="center">@i.AppointmentStatus</td>
+													<td> <input type="submit" value="Confirm" class="btn btn-info text-center" formaction="@Url.Action("UpdateReservation", "Admin", new { id = i.AppointmentID })" formmethod="post" /></td>
+													<td> <input type="submit" value="Cancel" class="btn btn-danger text-center" formaction="@Url.Action("DeleteReservation", "Admin", new { id = i.AppointmentID })" formmethod="get" /></td>
+												</tr>
+											}
+
+												else
+												{
+												<tr>
+													<td class="cart-product-item" align="center">@i.AppointmentID</td>
+													<td class="cart-product-item" align="center">@i.AppointmentDate.ToShortDateString()</td>
+													<td class="cart-product-item" align="center">@i.AppointmentStartTime</td>
+													<td class="cart-product-item" align="center">@i.AppointmentEndTime</td>
+													<td class="cart-product-item" align="center">@i.AppointmentStatus</td>
+													<td> </td>
+													<td> <input type="submit" value="Cancel" class="btn btn-danger text-center" formaction="@Url.Action("DeleteReservation", "Admin", new { id = i.AppointmentID })" formmethod="get" /></td>
+												</tr>
+												}
+										}
+
+											</tbody>
+								</table>
+							</div>
+							<!-- .cart-table end -->
+						</div>
+					</div>
+					<!-- .row end -->
+				</div>
+			</div>
+		</div>
+		<!-- .container end -->
+	}
+</section>
+
+<!-- #shopcart end -->
+<!-- Footer #1
+============================================= -->

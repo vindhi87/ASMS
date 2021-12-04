@@ -1,0 +1,302 @@
+﻿@model Amms.Models.InvDetail
+
+@{
+	/**/
+
+	ViewBag.Title = "Index";
+}
+
+<style>
+	#confirm {
+		display: none;
+		background-color: #514E61;
+		color: #FFFFFF;
+		border: 1px solid #aaa;
+		position: fixed;
+		width: 250px;
+		left: 50%;
+		margin-left: -100px;
+		padding: 6px 8px 8px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+		#confirm button {
+			background-color: #48E5DA;
+			display: inline-block;
+			border-radius: 5px;
+			border: 1px solid #aaa;
+			padding: 5px;
+			text-align: center;
+			width: 80px;
+			cursor: pointer;
+		}
+
+		#confirm .message {
+			text-align: left;
+		}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<body>
+
+
+	@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+	{
+		if (ViewBag.Message != null)
+		{
+			if (ViewBag.Type == true)
+			{
+				<script type="text/javascript">
+						window.onload = function () {
+						  alert("@ViewBag.Message");
+						};
+				</script>
+			}
+			else
+			{
+				<script type="text/javascript">
+						window.onload = function () {
+							 alert("@ViewBag.Message");
+						};
+				</script>
+			}
+
+		}
+	}
+	<section>
+		@using (Html.BeginForm())
+		{
+			<div class="col-xs-12 col-sm-12 col-md-2 sidebar">
+				<div class="widget widget-categories">
+					<div class="widget-content">
+						<ul class="list-unstyled">
+							<li>
+								<a href="@Url.Action("GetAllReservations", "Admin")"><i class="fa fa-angle-double-right"></i>Reservation</a>
+							</li>
+							<li>
+								<a href="@Url.Action("Index", "Invoice")"><i class="fa fa-angle-double-right"></i>Invoice</a>
+							</li>
+							<li>
+								<a href="@Url.Action("AddItem", "Admin")"><i class="fa fa-angle-double-right"></i>Item</a>
+							</li>
+							<li>
+								<a href="@Url.Action("AddUser", "Admin")"><i class="fa fa-angle-double-right"></i>Customer</a>
+							</li>
+							<li>
+								<a href="@Url.Action("AddService", "Admin")"><i class="fa fa-angle-double-right"></i>Service</a>
+							</li>
+							<li>
+								<a href="@Url.Action("AddUnit", "Admin")"><i class="fa fa-angle-double-right"></i>Unit</a>
+							</li>
+							<li>
+								<a href="@Url.Action("AddCategory", "Admin")"><i class="fa fa-angle-double-right"></i>Category</a>
+							</li>
+							<li>
+								<a href="@Url.Action("Index", "Report")"><i class="fa fa-angle-double-right"></i>Report Generation</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="col-xs-12 col-sm-12 col-md-10 shop-content">
+					<h4>Invoice Generation</h4>
+
+					<div class="row">
+						<div class="col-md-7">
+							<div class="form-group">
+								<label class="col-md-4"> Appointment Date:</label><input type="date" id="AppDate" name="appdate">  <br /><br /><br />
+								<label class="col-md-4"> Appointment Time:</label><input type="datetime-local" id="AppTime" name="apptime"> <br /><br /><br />
+								<lable class="col-md-4"> Customer Name:   </lable><input type="text" id="custname" name="custname" placehoder="custname"> 	<input type="text" class="cart-product-item" id="number" name="number" placehoder="number">
+								<input hidden="hidden" type="text" id="cid" name="cid">
+								<input hidden="hidden" type="text" id="vehiid" name="vehiid">
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="row">
+								<input type="submit" value="View All Invoices" class="btn btn-info text-center" formaction="@Url.Action("ViewAllInvoices", "Admin")" formmethod="get" /> <br />
+								<label class="col-md-5"> Invoice ID:</label>
+								@if (Model != null)
+								{
+									<input type="text" class="cart-product-item col-md-2" id="invid" name="invid" value="@Model.Myinvdetail.InvoiceID">
+								}
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group row">
+								<label class="col-sm-12 col-form-label">Vehicle Number</label>
+								<div class="col-sm-12">
+									<input type="text" id='pusort_des2' name="pusort_des2" class="form-control">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-12">
+									<select id="multiple2" name="multiple2" multiple="multiple">
+										<option value="0" style="width: 250px;">Search vehicle details</option>
+									</select>
+								</div>
+							</div>
+						</div><div class="col-sm-4">
+							<div class="form-group row">
+								<label class="col-sm-12 col-form-label">Item Short Description</label>
+								<div class="col-sm-12">
+									<input type="text" id='pusort_des' name="pusort_des" class="form-control">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-12">
+									<select id="multiple" name="multiple" multiple="multiple">
+										<option value="0" style="width: 250px;">Search item details</option>
+									</select>
+								</div>
+							</div>
+						</div><div class="col-sm-4">
+							<div class="form-group row">
+								<label class="col-sm-12 col-form-label">Service Short Description</label>
+								<div class="col-sm-12">
+									<input type="text" id='pusort_des1' name="pusort_des1" class="form-control">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-12">
+									<select id="multiple1" name="multiple1" multiple="multiple">
+										<option value="0" style="width: 250px;">Search service details</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container">
+
+						<div class="row">
+							<div class="col-xs-12  col-sm-12  col-md-12">
+								<div class="cart-table table-responsive">
+									<table class="table table-bordered">
+										<thead>
+											<tr class="cart-product">
+												<!--<td class="cart-product-item"><input type="text" class="form-control" id="ItemServiceID" placeholder="Item/Service ID"></td>-->
+												@if (Model != null)
+												{
+													<td class="cart-product-item" hidden="hidden" id="@Model.Myinvdetail.DetailID"></td>}
+
+												<td class="cart-product-item"><input type="text" class="cart-product-item" id="itemname" name="itemname" placeholder="Item/Service"></td>
+												<td class="cart-product-price"><input type="text" class="cart-product-item" id="itemprice" name="itemprice" placeholder="Price"></td>
+												<td class="cart-product-price"><input type="text" class="cart-product-item" id="itemunit" name="itemunit" placeholder="Unit"></td>
+												<td class="cart-product-quantity"><input type="text" class="cart-product-item" id="quantity" name="quantity" placeholder="Quantity"></td>
+												<td class="cart-product-total"><input type="text" class="cart-product-item" id="total" name="total" placeholder="Total"></td>
+
+												<td class="cart-product-total" hidden="hidden"><input type="text" class="cart-product-item" id="type" name="type" placeholder="type"></td>
+												<td class="cart-product-total" hidden="hidden"><input type="text" class="cart-product-item" id="itemid" name="itemid" placeholder="itemid"></td>
+												<td class="cart-product-total"><input type="submit" value="Add" class="btn btn-info text-center" formaction="@Url.Action("Addinvoicelineitem", "Invoice")" formmethod="post" /></td>
+											</tr>
+											<tr class="cart-product">
+												<!--<th class="cart-product-item">Item/Service ID</th>-->
+												<th class="cart-product-item">Item/Service</th>
+												<th class="cart-product-price">Price</th>
+												<th class="cart-product-price">Unit</th>
+												<th class="cart-product-quantity">Quantity</th>
+												<th class="cart-product-total">Total</th>
+												<th class="cart-product-total"></th>
+											</tr>
+										</thead>
+										<tbody>
+										<tbody>
+											@if (Model != null)
+											{
+
+												foreach (var i in Model.Listdetail)
+												{
+													<tr>
+														<td class="cart-product-item">@i.ItemServiceName</td>
+														<td class="cart-product-item">@i.Price</td>
+														<td class="cart-product-item">@i.UnitID</td>
+														<td class="cart-product-item">@i.Qty</td>
+														<td class="cart-product-item">@i.Total</td>
+
+														@if (Model != null)
+														{
+															<td class="cart-product-item"><input type="submit" value="Delete" class="btn btn-info text-center" formaction="@Url.Action("Deleteinvoicelineitem", "Invoice" , new { id = i.DetailID})" formmethod="post" /></td>
+														}
+
+													</tr>
+												}
+											}
+										</tbody>
+
+
+										<tr class="cart-product-action"></tr>
+									</table>
+
+								</div>
+								<!-- .cart-table end -->
+							</div>
+							<!-- .col-md-12 end -->
+							<div class="col-xs-12  col-sm-12 col-md-4">
+								<div class="cart-shiping">
+									<h6>Select Payment Method:</h6>
+									<div class="row">
+										<form>
+											<div class="col-xs-12 col-md-12">
+												<i class="fa fa-angle-down"></i>
+												<select class="form-control">
+													<option id="pay" name="pay" value="Cash">Cash</option>
+													<option id="pay" name="pay" value="Card">Card</option>
+												</select>
+											</div>
+
+										</form>
+									</div>
+								</div>
+								<!-- .cart-shiping end -->
+							</div>
+							<!-- .col-md-6 end -->
+							<div class="col-xs-12  col-sm-12  col-md-5">
+								<div class="cart-total-amount">
+									<h6>Invoice Totals :</h6>
+									@if (Model != null)
+									{
+										<label>@Model.sum</label>
+
+										<div class="cart-shiping" align="center">
+											<a href="@Url.Action("CancelInvoice", "Invoice",  null)"><img src="~/Content/images/icons/cancel.png" width="50" height="50" style="margin: 0px 50px 0px 0px;" /></a>
+											<a href="@Url.Action("PrintInvoice", "Report",new { id = 79}, null)"><img src="~/Content/images/icons/print.jpg" width="50" height="50" style="margin: 0px 50px 0px 0px;" /></a>
+											<a href="@Url.Action("Updateinvoice", "Invoice", new { id = @Model.Myinvdetail.InvoiceID})"><img src="~/Content/images/icons/pay.png" width="50" height="50" style="margin: 0px 50px 0px 0px;" /></a>
+											@*<input type="image" src="~/Content/images/icons/pay.png" width="60" height="60" style="margin: 0px 50px 0px 0px;" formaction="@Url.Action("Updateinvoice", "Invoice")" formmethod="post" />*@
+										</div>
+
+									}
+									@*<a href="@Url.Action("PrintInvoice", "Report",new { id = 79}, null)"><img src="~/Content/images/icons/print.jpg" width="60" height="60" style="margin: 0px 50px 0px 0px;" /></a>*@
+								</div>
+								<!-- .cart-total-amount end -->
+							</div>
+							<!-- .col-md-6 end -->
+						</div>
+						<!-- .row end -->
+					</div>
+				</div> <!-- .container end -->
+			</div>
+		}
+	</section>
+</body>
+
+@*script section*@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$('#AppDate').val(new Date().toJSON().slice(0, 10));
+	//document.getElementById('#Apptime').value = currentTime;
+
+	//var currentTime = date.toISOString().substring(11,16);
+	$('#AppTime').val(new Date().toLocaleTimeString());
+</script>
+

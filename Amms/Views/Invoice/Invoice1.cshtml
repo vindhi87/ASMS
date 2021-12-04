@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Invoice</h2>*@
+
+	<section id="shopcart" class="shop shop-cart">
+		<h2>Invoice Generation</h2>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12  col-sm-12  col-md-12">
+					<div class="cart-table table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr class="cart-product">
+									<!--<th class="cart-product-item">Item/Service ID</th>-->
+									<th class="cart-product-item">Item/Service</th>
+									<th class="cart-product-price">Price</th>
+									<th class="cart-product-quantity">Quantity</th>
+									<th class="cart-product-total">Total</th>
+								</tr>
+								<tr class="cart-product">
+									<!--<td class="cart-product-item"><input type="text" class="form-control" id="ItemServiceID" placeholder="Item/Service ID"></td>-->
+									<td class="cart-product-item"><input type="text" class="cart-product-item" id="itemservice" placeholder="Item/Service"></td>
+									<td class="cart-product-price"><label type="text" class="cart-product-price" id="lastname">Price</label></td>
+									<td class="cart-product-quantity"><input type="text" class="cart-product-quantity" id="quantity" placeholder="Quantity"></td>
+									<td class="cart-product-total">Total</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="cart-product">
+									<!--<td class="cart-product-item"></td>-->
+									<td class="cart-product-item"></td>
+									<td class="cart-product-price"></td>
+									<td class="cart-product-quantity"></td>
+									<td class="cart-product-total"></td>
+								</tr>
+								<tr class="cart-product">
+									<!--<td class="cart-product-item"></td>-->
+									<td class="cart-product-item"></td>
+									<td class="cart-product-price"></td>
+									<td class="cart-product-quantity"></td>
+									<td class="cart-product-total"></td>
+								</tr>
+								<tr class="cart-product-action">
+									<!--<td  colspan="4"><div class="row clearfix">
+										<div class="col-xs-12 col-sm-6 col-md-6">
+											<form class="form-inline">
+												<input type="text" class="form-control" id="coupon" placeholder="Coupon Code"/>
+												<button type="submit" class="btn btn-primary">Apply Coupon</button>
+											</form>
+										</div>
+										<div class="col-xs-12 col-sm-6 col-md-6 text-right">
+											<a class="btn btn-secondary" href="#">update cart</a>
+											<a class="btn btn-primary" href="#">Proceed To Checkout</a>
+										</div>
+									</div></td>-->
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- .cart-table end -->
+				</div>
+				<!-- .col-md-12 end -->
+				<div class="col-xs-12  col-sm-12  col-md-6 mb-30-xs mb-30-sm">
+					<div class="cart-shiping">
+						<h6>Select Payment Method:</h6>
+						<div class="row">
+							<form>
+								<div class="col-xs-12 col-md-12">
+									<i class="fa fa-angle-down"></i>
+									<select class="form-control">
+										<option value="Cash">Cash</option>
+										<option value="Card">Card</option>
+									</select>
+								</div>
+
+							</form>
+						</div>
+					</div>
+					<!-- .cart-shiping end -->
+				</div>
+				<!-- .col-md-6 end -->
+				<div class="col-xs-12  col-sm-12  col-md-6">
+					<div class="cart-total-amount">
+						<h6>Invoice Totals :</h6>
+						<ul class="list-unstyled">
+							<li>Cart Subtotal :<span class="pull-right text-right">$ 140.00</span></li>
+							<li>Shipping :<span class="pull-right text-right">Free Shipping</span></li>
+							<li>Order Total :<span class="pull-right text-right">$ 140.00</span></li>
+						</ul>
+					</div>
+					<!-- .cart-total-amount end -->
+				</div>
+				<!-- .col-md-6 end -->
+			</div>
+			<!-- .row end -->
+		</div>
+		<!-- .container end -->
+	</section>

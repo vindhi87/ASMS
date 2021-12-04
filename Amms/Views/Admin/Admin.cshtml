@@ -1,0 +1,79 @@
+﻿@{
+	ViewBag.Title = "Admin";	
+}
+
+@*<h2>Admin</h2>*@
+
+	<section>
+		@*<h2>Admin Panel</h2>*@
+		<div class="col-xs-12 col-sm-12 col-md-1">
+
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-10">
+			<div class="container">
+				<div class="widget widget-categories">
+					<div class="widget-content">
+						<div class="row">
+							<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+								<div class="demo-img">
+									<a href="@Url.Action("GetAllReservations", "Admin")"><img class="img-responsive" src="~/Content/images/admin/Reservation.png" alt="Reservation" /></a>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+								<div class="demo-img">
+									<a href="@Url.Action("Index", "Invoice")"><img class="img-responsive" src="~/Content/images/admin/Invoice.png" alt="Invoice" /></a>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+								<div class="demo-img">
+									<a href="@Url.Action("AddItem", "Admin")"><img class="img-responsive" src="~/Content/images/admin/Items.png" alt="item" /></a>								
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+								<div class="demo-img">
+									<a href="@Url.Action("AddUser", "Admin")"><img class="img-responsive" src="~/Content/images/admin/Customer.png" alt="Customer" /></a>								
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+								<div class="demo-img">
+									<a href="@Url.Action("AddService", "Admin")"><img class="img-responsive" src="~/Content/images/admin/Service.png" alt="Service" /></a>									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<br />
+					<div class="row">
+						<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+							<div class="demo-img">
+
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+							<div class="demo-img">
+								<a href="@Url.Action("AddUnit", "Admin")"><img class="img-responsive" src="~/Content/images/admin/unit.png" alt="Unit" /></a>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+							<div class="demo-img">
+								<a href="@Url.Action("AddCategory", "Admin")"><img class="img-responsive" src="~/Content/images/admin/Category.png" alt="Category" /></a>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3 col-md-2 text-center">
+							<div class="demo-img">
+								<a href="@Url.Action("Index", "Report")"><img class="img-responsive" src="~/Content/images/admin/Report.png" alt="Report" /></a>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				<!-- .col-md-3 end -->
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-12 col-md-1">
+
+		</div>
+	</section>

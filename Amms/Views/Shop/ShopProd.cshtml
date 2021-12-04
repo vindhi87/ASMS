@@ -1,0 +1,143 @@
+﻿
+@model Amms.Models.ShopItem
+@{
+	ViewBag.Title = "ShopProd";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+				<div class="widget widget-categories">
+					<div class="widget-title">
+						<h5>Categories</h5>
+					</div>
+					<div class="widget-content">
+						@foreach (var k in Model.CategoryList)
+						{
+							@Html.Partial("_CatItem", k)
+						}
+					</div>
+				</div>
+
+				<div class="widget widget-recent-products">
+					<div class="widget-title">
+						<h5>Best Sellers</h5>
+					</div>
+					<div class="widget-content">
+
+						<div class="product">
+							<img src="~/Content/images/shop/grid/brkfluid1.jpg" alt="product" width="70" height="70" />
+							<div class="product-desc">
+								<div class="product-title">
+									<a href="#">Break Fluid</a>
+								</div>
+								<div class="product-meta">
+									<span class="color-theme">Rs. 500.00</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="product">
+							<img src="~/Content/images/shop/grid/oil.jpg" alt="product" width="70" height="70" />
+							<div class="product-desc">
+								<div class="product-title">
+									<a href="#">Oil Filters</a>
+								</div>
+								<div class="product-meta">
+									<span class="color-theme">Rs. 500.00</span>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<!-- .widget-content end -->
+				</div>
+				<!-- .widget-recent-product end -->
+			</div>
+			<!-- .col-md-3 end -->
+			<div class="col-xs-12 col-sm-12 col-md-9">
+				<div class="row">
+					<div class="col-xs-12  col-sm-12  col-md-12">
+						<div class="shop-options">
+							<div class="product-options2 pull-left pull-none-xs">
+								<ul class="list-inline">
+									<li>
+										<div class="product-sort mb-15-xs">
+											<span>sort by:</span>
+											<i class="fa fa-angle-down"></i>
+											<select>
+												<option selected="" value="Default">Product Name</option>
+												<option value="Larger">Newest Items</option>
+												<option value="Larger">Oldest Items</option>
+												<option value="Larger">Hot Items</option>
+												<option value="Small">Highest Price</option>
+												<option value="Medium">Lowest Price</option>
+											</select>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+							<!-- .product-options end -->
+							<div class="product-view-mode text-right pull-none-xs">
+								<span>view as:</span>
+								<a class="active" href="#"><i class="fa fa-th-large"></i></a>
+								<a href="#"><i class="fa fa-th-list"></i></a>
+							</div>
+							<!-- .product-num end -->
+						</div>
+						<!-- .shop-options end -->
+					</div>
+					<!-- .col-md-12 end -->
+				</div>
+				<!-- .row end -->
+				<div class="row">
+					@if (Session["UserID"] == null)
+					{
+						<div class="alert alert-danger">
+							PLease Login to the system to use the shopping cart. 
+						</div>					
+					}
+
+					@foreach (var i in Model.ItemList)
+					{
+
+						@Html.Partial("_ShopItem", i)
+					}
+
+
+				</div>
+				<!-- .row end -->
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<ul class="pagination">
+							<li class="active">
+								<a href="#">1</a>
+							</li>
+							<li>
+								<a href="#">2</a>
+							</li>
+							<li>
+								<a href="#">3</a>
+							</li>
+							<li>
+								<a href="#" aria-label="Next">
+									<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- .col-md-12 end -->
+				</div>
+			</div>
+			<!-- .col-md-9 end -->
+
+		</div>
+	</div>
+
+</section>
+<!-- #blog end -->

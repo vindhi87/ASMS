@@ -1,0 +1,322 @@
+﻿@model Amms.Models.Newuser
+@{
+	ViewBag.Title = "Profile";
+}
+
+
+<style>
+	#confirm {
+		display: none;
+		background-color: #514E61;
+		color: #FFFFFF;
+		border: 1px solid #aaa;
+		position: fixed;
+		width: 250px;
+		left: 50%;
+		margin-left: -100px;
+		padding: 6px 8px 8px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+		#confirm button {
+			background-color: #48E5DA;
+			display: inline-block;
+			border-radius: 5px;
+			border: 1px solid #aaa;
+			padding: 5px;
+			text-align: center;
+			width: 80px;
+			cursor: pointer;
+		}
+
+		#confirm .message {
+			text-align: left;
+		}
+</style>
+
+<body>
+	@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+	{
+		if (ViewBag.Message != null)
+		{
+			if (ViewBag.Type == true)
+			{
+				<script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+					
+				};
+				</script>
+			}
+
+			else
+			{
+				<script type="text/javascript">
+            window.onload = function () {
+				alert("@ViewBag.Message");
+
+				 };
+				</script>
+			}
+		}
+
+	}
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<section>
+		<h4>User Profile</h4>
+
+		<div class="col-xs-12 col-sm-12 col-md-6 sidebar">
+
+		<h5>Personal Details</h5>
+
+		<div class="form-group">
+			<label type="text" class="form-control" id="firstname" style="height: 35px">User Name:&nbsp;@Model.UserName </label>
+			
+		</div>
+		<div class="form-group">
+			<label type="text" class="form-control" id="firstname" style="height: 35px">First Name:&nbsp;@Model.FirstName </label>
+		</div>
+		<div class="form-group">
+			<label type="text" class="form-control" id="lastname" style="height: 35px">Last Name:&nbsp;@Model.LastName </label>
+		</div>
+		<div class="form-group">
+			<label type="text" class="form-control" id="lastname" style="height: 35px">Address:&nbsp;@Model.Address</label>
+		</div>
+		<div class="form-group">
+			<label type="text" class="form-control" id="mobile" style="height: 35px">Mobile:&nbsp;@Model.Mobile</label>
+		</div>
+		<div class="form-group">
+			<label type="text" class="form-control" id="email" style="height: 35px">Email:&nbsp;@Model.EmailID</label>
+		</div>
+
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-6 sidebar">
+
+		<h5>Vehicle Details</h5>
+
+		<div class="cart-table table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th style="width: 20%;">Type</th>
+						<th style="width: 10%;">Model</th>
+						<th style="width: 10%;">Number</th>
+						<th style="width: 20%;">Year</th>
+						<th style="width: 10%;">Edit</th>
+						<th style="width: 10%;">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var i in Model.VehicleList)
+					{
+						if (i.UserID == Model.UserID)
+						{
+							<tr>
+								<td class="cart-product-item">@i.VehicleType</td>
+								<td class="cart-product-item">@i.VehicleModel</td>
+								<td class="cart-product-item">@i.VehicleNumber</td>
+								<td class="cart-product-item">@i.Year</td>
+								<td><a href="@Url.Action("UpdateVehicle", "User", new { id = i.VehicleID }, null)"><img src="~/Content/images/icons/edit.png" width="30" height="30" data-toggle="tooltip" data-placement="bottom" title="edit"  /></a></td>
+								<td><a href="@Url.Action("DeleteVehicle", "User", new { id = i.VehicleID }, null)"><img src="~/Content/images/icons/delete.png" width="30" height="30" data-toggle="tooltip" data-placement="bottom" title="delete"  /></a></td>
+							</tr>
+						}
+					}
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+		<div class="about-accordion">
+			<div class="panel-group accordion" id="accordion02" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-default">
+					@if (ViewBag.Button == "add")
+					{
+						<div class="panel-heading" role="tab" id="headingTwo">
+							<h4>
+								<label type="text" class="form-control" id="time" style="height: 35px" >Add New Vehicle</label>
+								<a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion02" href="#collapse02-2" aria-expanded="false" aria-controls="collapse02-2"> </a>
+							</h4>
+						</div>
+						<div id="collapse02-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
+
+
+							<div class="panel-body">
+								<div class="form-group">
+									<div class="form-group" hidden="hidden">
+										<div class="col-md-10">
+											@Html.EditorFor(model => model.Myvehicle.UserID, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.EditorFor(model => model.Myvehicle.VehicleID, new { htmlAttributes = new { @class = "form-control" } })
+										</div>
+									</div>
+									<br/>
+									<form class="mb-0">
+										@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+										<div class="form-group">
+											@Html.Label("Vehicle Type", htmlAttributes: new { @class = "control-label col-md-6" })
+											<div class="col-md-10">
+												@Html.EditorFor(model => model.Myvehicle.VehicleType, new { htmlAttributes = new { @class = "form-control" } })
+												@Html.ValidationMessageFor(model => model.Myvehicle.VehicleType, "", new { @class = "text-danger" })
+											</div>
+										</div>
+										<br />
+										<div class="form-group">
+											@Html.Label("Vehicle Model", htmlAttributes: new { @class = "control-label col-md-6" })
+											<div class="col-md-10">
+												@Html.EditorFor(model => model.Myvehicle.VehicleModel, new { htmlAttributes = new { @class = "form-control" } })
+												@Html.ValidationMessageFor(model => model.Myvehicle.VehicleModel, "", new { @class = "text-danger" })
+											</div>
+										</div>
+										<br />
+										<div class="form-group">
+											@Html.Label("Registration Number", htmlAttributes: new { @class = "control-label col-md-6" })
+											<div class="col-md-10">
+												@Html.EditorFor(model => model.Myvehicle.VehicleNumber, new { htmlAttributes = new { @class = "form-control" } })
+												@Html.ValidationMessageFor(model => model.Myvehicle.VehicleNumber, "", new { @class = "text-danger" })
+											</div>
+										</div>
+										<br/>
+										<div class="form-group">
+											@Html.Label("Manufactured Year", htmlAttributes: new { @class = "control-label col-md-6" })
+											<div class="col-md-10">
+												@Html.EditorFor(model => model.Myvehicle.Year, new { htmlAttributes = new { @class = "form-control" } })
+												@Html.ValidationMessageFor(model => model.Myvehicle.Year, "", new { @class = "text-danger" })
+											</div>
+										</div>
+										<br />
+										<button type="submit" class="btn btn-primary text-center mt-30">Add Vehicle</button>
+										<button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Update Vehicle</button>
+									</form>
+
+								</div>
+
+							</div>
+						</div>
+					}
+					else 
+					{
+
+						<div class="panel-heading" role="tab" id="headingTwo">
+							<h4>
+								<label type="text" class="form-control" id="time" style="height: 35px">Update Vehicle</label>
+								<a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion02" href="#collapse02-2" aria-expanded="false" aria-controls="collapse02-2"> </a>
+							</h4>
+						</div>
+						<div id="collapse02-2" class="panel-collapse expand" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="true">
+
+
+							<div class="panel-body">
+								<div class="form-group">
+									<div class="form-group" hidden="hidden">
+										<div class="col-md-10">
+											@Html.EditorFor(model => model.Myvehicle.UserID, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.EditorFor(model => model.Myvehicle.VehicleID, new { htmlAttributes = new { @class = "form-control" } })
+
+										</div>
+									</div>
+									<form class="mb-0">
+										@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+										<div class="form-group">
+											@Html.Label("Vehicle Type", htmlAttributes: new { @class = "control-label col-md-6" })
+											<div class="col-md-10">
+												@Html.EditorFor(model => model.Myvehicle.VehicleType, new { htmlAttributes = new { @class = "form-control" } })
+												@Html.ValidationMessageFor(model => model.Myvehicle.VehicleType, "", new { @class = "text-danger" })
+											</div>
+										</div>
+
+										<div class="form-group">
+											@Html.Label("Vehicle Model", htmlAttributes: new { @class = "control-label col-md-6" })
+											<div class="col-md-10">
+												@Html.EditorFor(model => model.Myvehicle.VehicleModel, new { htmlAttributes = new { @class = "form-control" } })
+												@Html.ValidationMessageFor(model => model.Myvehicle.VehicleModel, "", new { @class = "text-danger" })
+											</div>
+										</div>
+
+										<div class="form-group">
+											@Html.Label("Registration Number", htmlAttributes: new { @class = "control-label col-md-6" })
+											<div class="col-md-10">
+												@Html.EditorFor(model => model.Myvehicle.VehicleNumber, new { htmlAttributes = new { @class = "form-control" } })
+												@Html.ValidationMessageFor(model => model.Myvehicle.VehicleNumber, "", new { @class = "text-danger" })
+											</div>
+										</div>
+
+										<div class="form-group">
+											@Html.Label("Manufactured Year", htmlAttributes: new { @class = "control-label col-md-6" })
+											<div class="col-md-10">
+												@Html.EditorFor(model => model.Myvehicle.Year, new { htmlAttributes = new { @class = "form-control" } })
+												@Html.ValidationMessageFor(model => model.Myvehicle.Year, "", new { @class = "text-danger" })
+											</div>
+										</div>
+
+										<button type="submit" class="btn btn-primary text-center mt-30" disabled="disabled">Add Vehicle</button>
+										<button type="submit" class="btn btn-primary text-center mt-30">Update Vehicle</button>
+									</form>
+
+								</div>
+
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+	<div class="col-xs-12 col-sm-12 col-md-12 sidebar">
+		<h5>Service History</h5>
+		<div class="cart-table table-responsive">
+			<table class="table table-bordered" style="width:100%;">
+				<thead>
+					<tr>
+						<th>Invoice Date</th>
+						<th>Customer Name </th>
+						<th>Vehicle Number</th>
+						<th>Service Type</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					@if (Model.Listhistory != null)
+					{
+						foreach (var i in Model.Listhistory)
+						{
+							<tr>
+								<td class="cart-product-item" align="center">@i.InvDate.ToShortDateString()</td>
+								<td class="cart-product-item" align="center">@i.FirstName</td>
+								<td class="cart-product-item" align="center">@i.VehicleNumber</td>
+								<td class="cart-product-item" align="center">@i.ServiceName</td>
+
+							</tr>
+						}
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+	</section>
+	}
+</body>
+
+
+@section Scripts{
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+}
